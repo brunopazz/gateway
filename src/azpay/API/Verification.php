@@ -16,10 +16,12 @@
      */
     class Verification implements \JsonSerializable
     {
+
         /**
          * @var
          */
         private $merchantId;
+
         /**
          * @var
          */
@@ -31,7 +33,6 @@
          *
          * @param $merchantId
          * @param $merchantKey
-         * @param $env
          */
         public function __construct($merchantId, $merchantKey)
         {
@@ -39,6 +40,9 @@
             $this->merchantKey = $merchantKey;
         }
 
+        /**
+         * @return array|mixed
+         */
         public function jsonSerialize()
         {
             return get_object_vars($this);

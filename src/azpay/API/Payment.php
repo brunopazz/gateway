@@ -94,23 +94,7 @@
             return get_object_vars($this);
         }
 
-        /**
-         * @return mixed
-         */
-        public function getTokenCard()
-        {
-            return $this->tokenCard;
-        }
 
-        /**
-         * @param mixed $tokenCard
-         * @return Payment
-         */
-        public function setTokenCard($tokenCard)
-        {
-            $this->tokenCard = $tokenCard;
-            return $this;
-        }
 
         /**
          * @return mixed

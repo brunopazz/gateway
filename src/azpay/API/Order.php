@@ -14,13 +14,6 @@
         private $reference;
         private $totalAmount;
 
-        /**
-         * Order constructor.
-         *
-         * @param $reference
-         * @param $totalAmount
-         */
-
 
         public function jsonSerialize()
         {

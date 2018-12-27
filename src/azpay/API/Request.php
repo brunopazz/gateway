@@ -24,10 +24,11 @@
          */
         private $baseUrl = '';
 
+
         /**
          * Request constructor.
          *
-         * @param Getnet $credentials
+         * @param $env
          */
         function __construct($env)
         {
@@ -40,18 +41,34 @@
             }
         }
 
+        /**
+         * @return string
+         */
         public function getBaseUrl()
         {
             return $this->baseUrl;
         }
 
+        /**
+         * @param $url_path
+         * @return mixed
+         * @throws Exception
+         */
         function get($url_path)
         {
             return $this->send($url_path, 'GET');
         }
 
+        /**
+         * @param $url_path
+         * @param $method
+         * @param null $json
+         * @return mixed
+         * @throws Exception
+         */
         private function send($url_path, $method, $json = NULL)
         {
+            $response = "";
             $curl = curl_init($this->getFullUrl($url_path));
 
             $defaultCurlOptions = array(
@@ -97,6 +114,10 @@
             return json_decode($response, true);
         }
 
+        /**
+         * @param $url_path
+         * @return string
+         */
         private function getFullUrl($url_path)
         {
             if (stripos($url_path, $this->baseUrl, 0) === 0) {
@@ -106,12 +127,24 @@
             return $this->baseUrl . $url_path;
         }
 
+        /**
+         * @param $url_path
+         * @param $params
+         * @return mixed
+         * @throws Exception
+         */
         function post($url_path, $params)
         {
             return $this->send($url_path, 'POST', $params);
         }
 
 
+        /**
+         * @param $url_path
+         * @param $params
+         * @return mixed
+         * @throws Exception
+         */
         function put($url_path, $params)
         {
             return $this->send($url_path, 'PUT', $params);
