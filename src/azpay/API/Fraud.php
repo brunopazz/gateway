@@ -9,24 +9,80 @@
     namespace Azpay\API;
 
 
+    /**
+     * Class Fraud
+     *
+     * @package Azpay\API
+     */
     class Fraud implements \JsonSerializable
     {
+        /**
+         * @var
+         */
         private $operator;
+        /**
+         * @var
+         */
         private $method;
+        /**
+         * @var
+         */
         private $costumerIP;
+        /**
+         * @var
+         */
         private $device;
+        /**
+         * @var
+         */
         private $name;
+        /**
+         * @var
+         */
         private $document;
+        /**
+         * @var
+         */
         private $phonePrefix;
+        /**
+         * @var
+         */
         private $phoneNumber;
+        /**
+         * @var
+         */
         private $address;
+        /**
+         * @var
+         */
         private $addressNumber;
+        /**
+         * @var
+         */
         private $address2;
+        /**
+         * @var
+         */
         private $city;
+        /**
+         * @var
+         */
         private $state;
+        /**
+         * @var
+         */
         private $postalCode;
+        /**
+         * @var
+         */
         private $country;
+        /**
+         * @var
+         */
         private $email;
+        /**
+         * @var
+         */
         private $itens;
 
         /**
@@ -47,6 +103,9 @@
             return $this;
         }
 
+        /**
+         * @return array|mixed
+         */
         public function jsonSerialize()
         {
             return get_object_vars($this);

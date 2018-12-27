@@ -8,18 +8,55 @@
 
     namespace Azpay\API;
 
+    use Azpay\API\Billing as Billing;
+    use Azpay\API\Order as Order;
+    use Azpay\API\Payment as Payment;
+    use Azpay\API\Verification as Verification;
 
+    /**
+     * Class Transaction
+     *
+     * @package Azpay\API
+     */
     class Transaction implements \JsonSerializable
     {
+        /**
+         * @var
+         */
         private $version;
+        /**
+         * @var \Azpay\API\Verification
+         */
         private $verification;
+        /**
+         * @var
+         */
         private $urlReturn;
+        /**
+         * @var
+         */
         private $fraud;
+        /**
+         * @var
+         */
         private $order;
+        /**
+         * @var
+         */
         private $payment;
+        /**
+         * @var
+         */
         private $billing;
 
 
+        /**
+         * Transaction constructor.
+         *
+         * @param $version
+         * @param $merchantId
+         * @param $merchantKey
+         */
         public function __construct($version, $merchantId, $merchantKey)
         {
             $this->version = $version;
@@ -28,6 +65,11 @@
 
         }
 
+        /**
+         * @param $name
+         * @param $value
+         * @return $this
+         */
         public function __set($name, $value)
         {
             $this->$name = $value;
@@ -35,11 +77,17 @@
         }
 
 
+        /**
+         * @return array|mixed
+         */
         public function jsonSerialize()
         {
             return get_object_vars($this);
         }
 
+        /**
+         * @return false|string
+         */
         public function toJSON()
         {
             return json_encode(get_object_vars($this), JSON_PRETTY_PRINT);
@@ -53,9 +101,9 @@
             return $this->order;
         }
 
+
         /**
-         * @param mixed $order
-         * @return Transaction
+         * @return \Azpay\API\Order
          */
         public function Order()
         {
@@ -71,9 +119,9 @@
             return $this->payment;
         }
 
+
         /**
-         * @param mixed $payment
-         * @return Transaction
+         * @return \Azpay\API\Payment
          */
         public function Payment()
         {
@@ -89,9 +137,9 @@
             return $this->billing;
         }
 
+
         /**
-         * @param mixed $billing
-         * @return Transaction
+         * @return \Azpay\API\Billing
          */
         public function Billing()
         {
