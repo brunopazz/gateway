@@ -13,6 +13,7 @@
     include_once("../src/azpay/API/Payment.php");
     include_once("../src/azpay/API/Authorize.php");
     include_once("../src/azpay/API/Billing.php");
+    include_once("../src/azpay/API/Request.php");
 
     use Azpay\API\Gateway as Gateway;
     use Azpay\API\Transaction as Transaction;
@@ -47,4 +48,11 @@
 
 
     $response = $gateway->authorize($transaction);
-    print_r($response);
+
+    if ($response->isAuthorized()) {
+        print "autorizado";
+    } else {
+        print "Não-autorizado";
+    }
+
+    //print_r($response->getResponseJson());

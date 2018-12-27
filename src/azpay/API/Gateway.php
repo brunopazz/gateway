@@ -20,56 +20,59 @@
         private $version;
         private $verification;
         private $env;
-
-        /**
-         * Gateway constructor.
-         *
-         * @param $env
-         */
-        public function __construct($env) { $this->env = $env; }
+        private $response;
 
 
-        /**
-         * @param mixed $authorize
-         * @return Gateway
-         */
+        public function __construct($env) { $this->env = strtoupper($env); }
+
+
         public function Authorize(Transaction $transaction)
         {
-            $this->json = new Authorize($transaction);
-            return $this->json;
+            $authorize = new Authorize($transaction);
+            $request = new Request($this->env);
+
+            $this->response = $request->post("/v1/receiver", $authorize->toJSON());
+
+            return $this;
         }
 
 
-        /**
-         * @return mixed
-         */
+        public function getResponse()
+        {
+            return $this->response;
+        }
+
+        public function getResponseJson()
+        {
+            return json_encode($this->response, JSON_PRETTY_PRINT);
+        }
+
+        public function isAuthorized()
+        {
+            if (isset($this->response["status"]) && ($this->response["status"] == 3 || $this->response["status"] == 8)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function getVersion()
         {
             return $this->version;
         }
 
-        /**
-         * @param mixed $version
-         * @return Gateway
-         */
+
         public function setVersion($version)
         {
             $this->version = $version;
             return $this;
         }
 
-        /**
-         * @return Verification
-         */
         public function getVerification(): Verification
         {
             return $this->verification;
         }
 
-        /**
-         * @param Verification $verification
-         * @return Gateway
-         */
         public function setVerification(Verification $verification): Gateway
         {
             $this->verification = $verification;

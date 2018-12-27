@@ -52,10 +52,14 @@
                 ]
             ];
 
-            return $this->jsonRequest = json_encode($json, JSON_PRETTY_PRINT);
+            return $this->jsonRequest = $json;
         }
 
 
+        public function toJSON()
+        {
+            return json_encode($this->jsonRequest, JSON_PRETTY_PRINT);
+        }
         /**
          * @return array|mixed
          */
