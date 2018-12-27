@@ -68,6 +68,7 @@
          */
         private function send($url_path, $method, $json = NULL)
         {
+
             $response = "";
             $curl = curl_init($this->getFullUrl($url_path));
 

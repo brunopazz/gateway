@@ -5,13 +5,13 @@
      * Date: 2018-12-26
      * Time: 22:50
      */
-
     include_once("../src/azpay/API/Gateway.php");
     include_once("../src/azpay/API/Verification.php");
     include_once("../src/azpay/API/Transaction.php");
     include_once("../src/azpay/API/Order.php");
     include_once("../src/azpay/API/Payment.php");
     include_once("../src/azpay/API/Authorize.php");
+    include_once("../src/azpay/API/Sale.php");
     include_once("../src/azpay/API/Billing.php");
     include_once("../src/azpay/API/Request.php");
 
@@ -21,7 +21,7 @@
     $gateway = new Gateway("sandbox");
 
     $transaction = new Transaction("1.0.0", "1", "d41d8cd98f00b204e9800998ecf8427e");
-    $transaction->setUrlReturn("http://0.0.0.0:8888/v1/returner");
+    $transaction->setUrlReturn("");
     $transaction->setFraud("true");
 
     $transaction->Order()
@@ -46,8 +46,13 @@
     $transaction->Billing()
         ->setCustomerIdentity("1");
 
+    try {
+        $response = $gateway->sale($transaction);
+        //$response = $gateway->authorize($transaction);
+    } catch (Exception $e) {
 
-    $response = $gateway->authorize($transaction);
+    }
+
 
     if ($response->isAuthorized()) {
         print "autorizado";

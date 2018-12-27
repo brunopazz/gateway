@@ -14,21 +14,10 @@
      *
      * @package Azpay\API
      */
-    class Authorize implements \JsonSerializable
+    class Sale extends Authorize
     {
 
         private $jsonRequest;
-
-        public function __construct(Transaction $transaction)
-        {
-            $this->setJsonRequest($transaction);
-        }
-
-
-        public function getJsonRequest()
-        {
-            return $this->jsonRequest;
-        }
 
 
         public function setJsonRequest(Transaction $transaction)
@@ -37,7 +26,7 @@
             $json["transaction-request"] = [
                 "version"      => $transaction->getVersion(),
                 "verification" => $transaction->getVerification(),
-                "authorize"    => [
+                "sale"         => [
                     "order"     => $transaction->getOrder(),
                     "payment"   => $transaction->getPayment(),
                     "billing"   => $transaction->getBilling(),
@@ -49,15 +38,9 @@
             return $this->jsonRequest = $json;
         }
 
-
         public function toJSON()
         {
             return json_encode($this->jsonRequest, JSON_PRETTY_PRINT);
-        }
-
-        public function jsonSerialize()
-        {
-            return get_object_vars($this);
         }
 
 
