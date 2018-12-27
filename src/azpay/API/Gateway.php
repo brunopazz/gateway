@@ -16,26 +16,7 @@
      */
     class Gateway
     {
-        /**
-         * @var
-         */
-        public $authorize;
-        /**
-         * @var
-         */
-        public $sale;
-        /**
-         * @var
-         */
-        public $capture;
-        /**
-         * @var
-         */
-        public $cancel;
-        /**
-         * @var
-         */
-        public $report;
+
         /**
          * @var
          */
@@ -96,6 +77,54 @@
         }
 
         /**
+         * @param Transaction $transaction
+         * @param $transactionId
+         * @param null $amount
+         * @return $this
+         * @throws \Exception
+         */
+        public function Capture(Transaction $transaction, $transactionId, $amount = NULL)
+        {
+            $sale = new Capture($transaction, $transactionId, $amount);
+            $request = new Request($this->env);
+            $this->response = $request->post("/v1/receiver", $sale->toJSON());
+
+            return $this;
+        }
+
+        /**
+         * @param Transaction $transaction
+         * @param $transactionId
+         * @param null $amount
+         * @return $this
+         * @throws \Exception
+         */
+        public function Cancel(Transaction $transaction, $transactionId, $amount = NULL)
+        {
+            $sale = new Cancel($transaction, $transactionId, $amount);
+            $request = new Request($this->env);
+            $this->response = $request->post("/v1/receiver", $sale->toJSON());
+
+            return $this;
+        }
+
+        /**
+         * @param Transaction $transaction
+         * @param $transactionId
+         * @return $this
+         * @throws \Exception
+         */
+        public function Report(Transaction $transaction, $transactionId)
+        {
+            $sale = new Report($transaction, $transactionId);
+            $request = new Request($this->env);
+            $this->response = $request->post("/v1/receiver", $sale->toJSON());
+
+            return $this;
+        }
+
+
+        /**
          * @return mixed
          */
         public function getResponse()
@@ -111,10 +140,86 @@
             return json_encode($this->response, JSON_PRETTY_PRINT);
         }
 
+
+        /**
+         * @return string
+         */
+        public function getTransactionID()
+        {
+            if (isset($this->response["transactionId"])) {
+                return $this->response["transactionId"];
+            }
+            return "UNKNOWN";
+        }
+
+
+        /**
+         * @return string
+         */
+        public function getStatus()
+        {
+
+            switch ($this->response["status"]) {
+                case "0":
+                    return "WAITING FOR PAYMENT";
+                case "1":
+                    return "AUTHENTICATED";
+                case "2":
+                    return "UNAUTHORIZED";
+                case "3":
+                    return "AUTHORIZED";
+                case "4":
+                    return "UNAUTHORIZED";
+                case "5":
+                    return "IN CANCELLING";
+                case "6":
+                    return "CANCELLED";
+                case "7":
+                    return "IN CAPTURING";
+                case "8":
+                    return "AUTHORIZED";
+                case "9":
+                    return "UNAUTHORIZED";
+                case "10":
+                    return "RECURRING DONE";
+                case "11":
+                    return "BOLETO";
+                case "12":
+                case "56":
+                    return "PARTIAL CANCELLED";
+            }
+            return "UNKNOWN";
+
+        }
+
         /**
          * @return bool
          */
         public function isAuthorized()
+        {
+            if (isset($this->response["status"]) && ($this->response["status"] == 3 || $this->response["status"] == 8)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /**
+         * @return bool
+         */
+        public function canCapture()
+        {
+            if (isset($this->response["status"]) && ($this->response["status"] == 3)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /**
+         * @return bool
+         */
+        public function canCancel()
         {
             if (isset($this->response["status"]) && ($this->response["status"] == 3 || $this->response["status"] == 8)) {
                 return true;

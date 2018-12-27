@@ -98,13 +98,8 @@
                 print "ERROR";
             }
 
-
-            if (isset(json_decode($response)->error)) {
-                throw new Exception(json_decode($response)->error_description, 100);
-            }
-
             if (curl_getinfo($curl, CURLINFO_HTTP_CODE) >= 400) {
-                throw new Exception($response, 100);
+                throw new Exception(json_decode($response)->result->error->details, CURLINFO_HTTP_CODE);
             }
             if (!$response) {
                 print "ERROR";
