@@ -8,7 +8,6 @@
 
     namespace Azpay\API;
 
-
     /**
      * Class Payments
      *
@@ -16,6 +15,10 @@
      */
     class Payment implements \JsonSerializable
     {
+        /**
+         * @var
+         */
+        private $tokenCard;
         /**
          * @var
          */
@@ -44,46 +47,39 @@
          * @var
          */
         private $groupNumber = "0";
+
         /**
          * @var
          */
-        private $flag;
+        private $saveCreditCard;
         /**
          * @var
          */
-        private $cardHolder;
+        private $generateToken;
         /**
          * @var
          */
-        private $cardNumber;
-        /**
-         * @var
-         */
-        private $cardSecurityCode;
-        /**
-         * @var
-         */
-        private $cardExpirationDate;
-        /**
-         * @var
-         */
-        private $saveCreditCard = "false";
-        /**
-         * @var
-         */
-        private $generateToken = "false";
-        /**
-         * @var
-         */
-        private $departureTax = "false";
+        private $departureTax;
         /**
          * @var
          */
         private $softDescriptor;
+
+
         /**
-         * @var
+         * @return mixed
          */
-        // private $tokenCard;
+        public function getTokenCard()
+        {
+            return $this->tokenCard;
+        }
+
+
+        public function setTokenCard($tokenCard)
+        {
+            $this->tokenCard = $tokenCard;
+            return $this;
+        }
 
 
         /**
@@ -91,9 +87,13 @@
          */
         public function jsonSerialize()
         {
-            return get_object_vars($this);
-        }
+            $vars = get_object_vars($this);
+            $vars_clear = array_filter($vars, function ($value) {
+                return NULL !== $value;
+            });
 
+            return $vars_clear;
+        }
 
 
         /**
@@ -222,95 +222,7 @@
             return $this;
         }
 
-        /**
-         * @return mixed
-         */
-        public function getFlag()
-        {
-            return $this->flag;
-        }
 
-        /**
-         * @param mixed $flag
-         * @return Payment
-         */
-        public function setFlag($flag)
-        {
-            $this->flag = $flag;
-            return $this;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getCardHolder()
-        {
-            return $this->cardHolder;
-        }
-
-        /**
-         * @param mixed $cardHolder
-         * @return Payment
-         */
-        public function setCardHolder($cardHolder)
-        {
-            $this->cardHolder = $cardHolder;
-            return $this;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getCardNumber()
-        {
-            return $this->cardNumber;
-        }
-
-        /**
-         * @param mixed $cardNumber
-         * @return Payment
-         */
-        public function setCardNumber($cardNumber)
-        {
-            $this->cardNumber = $cardNumber;
-            return $this;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getCardSecurityCode()
-        {
-            return $this->cardSecurityCode;
-        }
-
-        /**
-         * @param mixed $cardSecurityCode
-         * @return Payment
-         */
-        public function setCardSecurityCode($cardSecurityCode)
-        {
-            $this->cardSecurityCode = $cardSecurityCode;
-            return $this;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getCardExpirationDate()
-        {
-            return $this->cardExpirationDate;
-        }
-
-        /**
-         * @param mixed $cardExpirationDate
-         * @return Payment
-         */
-        public function setCardExpirationDate($cardExpirationDate)
-        {
-            $this->cardExpirationDate = $cardExpirationDate;
-            return $this;
-        }
 
         /**
          * @return mixed

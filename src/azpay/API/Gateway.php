@@ -29,22 +29,19 @@
          * @var
          */
         private $verification;
-        /**
-         * @var string
-         */
-        private $env;
+
+        private $credential;
+
         /**
          * @var
          */
         private $response;
 
 
-        /**
-         * Gateway constructor.
-         *
-         * @param $env
-         */
-        public function __construct($env) { $this->env = strtoupper($env); }
+        public function __construct(Credential $credential)
+        {
+            $this->credential = $credential;
+        }
 
 
         /**
@@ -55,7 +52,7 @@
         public function Authorize(Transaction $transaction)
         {
             $authorize = new Authorize($transaction);
-            $request = new Request($this->env);
+            $request = new Request($this->credential);
 
             $this->response = $request->post("/v1/receiver", $authorize->toJSON());
 
@@ -69,12 +66,17 @@
          */
         public function Sale(Transaction $transaction)
         {
+
+
             $sale = new Sale($transaction);
-            $request = new Request($this->env);
+            $request = new Request($this->credential);
+
+
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
 
             return $this;
         }
+
 
         /**
          * @param Transaction $transaction
@@ -86,7 +88,7 @@
         public function Capture(Transaction $transaction, $transactionId, $amount = NULL)
         {
             $sale = new Capture($transaction, $transactionId, $amount);
-            $request = new Request($this->env);
+            $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
 
             return $this;
@@ -102,7 +104,7 @@
         public function Cancel(Transaction $transaction, $transactionId, $amount = NULL)
         {
             $sale = new Cancel($transaction, $transactionId, $amount);
-            $request = new Request($this->env);
+            $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
 
             return $this;
@@ -117,7 +119,7 @@
         public function Report(Transaction $transaction, $transactionId)
         {
             $sale = new Report($transaction, $transactionId);
-            $request = new Request($this->env);
+            $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
 
             return $this;
@@ -248,18 +250,18 @@
         }
 
         /**
-         * @return Verification
+         * @return Credential
          */
-        public function getVerification(): Verification
+        public function getVerification(): Credential
         {
             return $this->verification;
         }
 
         /**
-         * @param Verification $verification
+         * @param Credential $verification
          * @return Gateway
          */
-        public function setVerification(Verification $verification): Gateway
+        public function setVerification(Credential $verification): Gateway
         {
             $this->verification = $verification;
             return $this;

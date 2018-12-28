@@ -14,7 +14,7 @@
      *
      * @package Azpay\API
      */
-    class Verification implements \JsonSerializable
+    class Credential implements \JsonSerializable
     {
 
         /**
@@ -27,6 +27,9 @@
          */
         private $merchantKey;
 
+        private $env;
+
+
 
         /**
          * Verification constructor.
@@ -34,10 +37,11 @@
          * @param $merchantId
          * @param $merchantKey
          */
-        public function __construct($merchantId, $merchantKey)
+        public function __construct($merchantId, $merchantKey, $env)
         {
             $this->merchantId = $merchantId;
             $this->merchantKey = $merchantKey;
+            $this->env = $env;
         }
 
         /**
@@ -58,7 +62,7 @@
 
         /**
          * @param mixed $merchantId
-         * @return Verification
+         * @return Credential
          */
         public function setMerchantId($merchantId)
         {
@@ -76,11 +80,29 @@
 
         /**
          * @param mixed $merchantKey
-         * @return Verification
+         * @return Credential
          */
         public function setMerchantKey($merchantKey)
         {
             $this->merchantKey = $merchantKey;
+            return $this;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getEnv()
+        {
+            return strtoupper($this->env);
+        }
+
+        /**
+         * @param mixed $env
+         * @return Credential
+         */
+        public function setEnv($env)
+        {
+            $this->env = $env;
             return $this;
         }
 

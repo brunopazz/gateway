@@ -9,9 +9,9 @@
     namespace Azpay\API;
 
     use Azpay\API\Billing as Billing;
+    use Azpay\API\Credential as Credential;
     use Azpay\API\Order as Order;
     use Azpay\API\Payment as Payment;
-    use Azpay\API\Verification as Verification;
 
     /**
      * Class Transaction
@@ -25,7 +25,7 @@
          */
         private $version;
         /**
-         * @var \Azpay\API\Verification
+         * @var \Azpay\API\Credential
          */
         private $verification;
         /**
@@ -50,17 +50,10 @@
         private $billing;
 
 
-        /**
-         * Transaction constructor.
-         *
-         * @param $version
-         * @param $merchantId
-         * @param $merchantKey
-         */
-        public function __construct($version, $merchantId, $merchantKey)
+        public function __construct(Credential $credential)
         {
-            $this->version = $version;
-            $this->verification = new Verification($merchantId, $merchantKey);
+            $this->version = "1.0.0";
+            $this->setVerification($credential);
             return $this;
 
         }
@@ -82,7 +75,12 @@
          */
         public function jsonSerialize()
         {
-            return get_object_vars($this);
+            $vars = get_object_vars($this);
+            $vars_clear = array_filter($vars, function ($value) {
+                return NULL !== $value;
+            });
+
+            return $vars_clear;
         }
 
         /**
@@ -138,13 +136,10 @@
         }
 
 
-        /**
-         * @return \Azpay\API\Billing
-         */
-        public function Billing()
+        public function Billing(Billing $billing)
         {
-            $this->billing = new Billing();
-            return $this->billing;
+            $this->billing = $billing;
+            return $this;
         }
 
 
@@ -178,9 +173,10 @@
          * @param mixed $verification
          * @return Transaction
          */
-        public function setVerification(Verification $verification)
+        public function setVerification(Credential $verification)
         {
-            $this->verification = $verification;
+            $this->verification["merchantId"] = $verification->getMerchantId();
+            $this->verification["merchantKey"] = $verification->getMerchantKey();
             return $this;
         }
 
@@ -219,5 +215,6 @@
             $this->fraud = $fraud;
             return $this;
         }
+
 
     }

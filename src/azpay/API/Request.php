@@ -25,18 +25,13 @@
         private $baseUrl = '';
 
 
-        /**
-         * Request constructor.
-         *
-         * @param $env
-         */
-        function __construct($env)
+        function __construct(Credential $credential)
         {
-            if ($env == "PRODUCTION") {
+            if ($credential->getEnv() == "PRODUCTION") {
                 $this->baseUrl = 'http://0.0.0.0:8888';
-            } elseif ($env == "DEV") {
+            } elseif ($credential->getEnv() == "DEV") {
                 $this->baseUrl = 'http://0.0.0.0:8888';
-            } elseif ($env == "SANDBOX") {
+            } elseif ($credential->getEnv() == "SANDBOX") {
                 $this->baseUrl = 'http://0.0.0.0:8888';
             }
         }
@@ -95,14 +90,14 @@
             try {
                 $response = curl_exec($curl);
             } catch (Exception $e) {
-                print "ERROR";
+                print "ERROR1";
             }
 
             if (curl_getinfo($curl, CURLINFO_HTTP_CODE) >= 400) {
                 throw new Exception(json_decode($response)->result->error->details, CURLINFO_HTTP_CODE);
             }
             if (!$response) {
-                print "ERROR";
+                print "URL ERROR";
                 EXIT;
             }
             curl_close($curl);
