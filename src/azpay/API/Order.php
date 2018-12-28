@@ -45,11 +45,20 @@
         }
 
         /**
-         * @param mixed $reference
-         * @return Order
+         * @param $reference
+         * @return $this
+         * @throws Exception
          */
         public function setReference($reference)
         {
+            if (!is_string($reference)) {
+                throw new Exception('setReference must be a string!');
+            }
+
+            if (strlen($reference) > 16) {
+                throw new Exception('setReference must be less than 17 characters');
+            }
+
             $this->reference = $reference;
             return $this;
         }

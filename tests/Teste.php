@@ -12,7 +12,7 @@
     include_once("../src/azpay/API/Payment.php");
     include_once("../src/azpay/API/Authorize.php");
     include_once("../src/azpay/API/Sale.php");
-    include_once("../src/azpay/API/Billing.php");
+    include_once("../src/azpay/API/Customer.php");
     include_once("../src/azpay/API/Request.php");
     include_once("../src/azpay/API/Capture.php");
     include_once("../src/azpay/API/Cancel.php");
@@ -21,20 +21,23 @@
     include_once("../src/azpay/API/Acquirers.php");
     include_once("../src/azpay/API/Methods.php");
     include_once("../src/azpay/API/Brand.php");
+    include_once("../src/azpay/API/Environment.php");
 
     use Azpay\API\Acquirers as Acquirers;
-    use Azpay\API\Billing as Billing;
     use Azpay\API\Brand as Brand;
     use Azpay\API\Card as Card;
     use Azpay\API\Credential as Credential;
+    use Azpay\API\Customer as Customer;
+    use Azpay\API\Environment as Environment;
     use Azpay\API\Gateway as Gateway;
     use Azpay\API\Methods as Methods;
     use Azpay\API\Transaction as Transaction;
+    use Exception as Exception;
 
-    $credential = new Credential("1", "d41d8cd98f00b204e9800998ecf8427e", "sandbox");
+    $credential = new Credential("1", "d41d8cd98f00b204e9800998ecf8427e", Environment::SANDBOX);
     $gateway = new Gateway($credential);
-    $billing = new Billing();
-    $billing->setCustomerIdentity("1")
+    $customer = new Customer();
+    $customer->setCustomerIdentity("1")
         ->setName("Bruno")
         ->setEmail("brunopaz@test.com");
 
@@ -46,7 +49,7 @@
         ->setCardNumber("4111111111111111")
         ->setCardSecurityCode("123")
         ->setCardExpirationDate("202012")
-        ->Billing($billing)
+        ->Customer($customer)
         ->Tokenizer();
 
 
@@ -65,7 +68,7 @@
         ->setNumberOfPayments(1)
         ->setTokenCard($tokencard)
         ->setSoftDescriptor("Bruno paz");
-    $transaction->Billing($billing);
+    $transaction->Customer($customer);
 
 
     try {

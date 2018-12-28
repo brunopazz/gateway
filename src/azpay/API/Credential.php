@@ -8,6 +8,7 @@
 
     namespace Azpay\API;
 
+    use Exception;
 
     /**
      * Class Verification
@@ -27,21 +28,27 @@
          */
         private $merchantKey;
 
+        /**
+         * @var
+         */
         private $env;
 
 
-
         /**
-         * Verification constructor.
+         * Credential constructor.
          *
          * @param $merchantId
          * @param $merchantKey
+         * @param $env
+         * @throws Exception
          */
         public function __construct($merchantId, $merchantKey, $env)
         {
-            $this->merchantId = $merchantId;
-            $this->merchantKey = $merchantKey;
-            $this->env = $env;
+
+            $this->setMerchantId($merchantId);
+            $this->setMerchantKey($merchantKey);
+            $this->setEnv($env);
+
         }
 
         /**
@@ -60,12 +67,22 @@
             return $this->merchantId;
         }
 
+
         /**
-         * @param mixed $merchantId
-         * @return Credential
+         * @param $merchantId
+         * @return $this
+         * @throws Exception
          */
         public function setMerchantId($merchantId)
         {
+            if (!is_string($merchantId)) {
+                throw new Exception('setMerchantId must be a string!');
+            }
+
+            if (strlen($merchantId) > 10) {
+                throw new Exception('setMerchantId must be less than 11 characters');
+            }
+
             $this->merchantId = $merchantId;
             return $this;
         }
@@ -79,11 +96,20 @@
         }
 
         /**
-         * @param mixed $merchantKey
-         * @return Credential
+         * @param $merchantKey
+         * @return $this
+         * @throws Exception
          */
         public function setMerchantKey($merchantKey)
         {
+            if (!is_string($merchantKey)) {
+                throw new Exception('setMerchantKey must be a string!');
+            }
+
+            if (strlen($merchantKey) > 51) {
+                throw new Exception('setMerchantKey must be less than 51 characters');
+            }
+
             $this->merchantKey = $merchantKey;
             return $this;
         }
@@ -96,12 +122,20 @@
             return strtoupper($this->env);
         }
 
+
         /**
-         * @param mixed $env
-         * @return Credential
+         * @param $env
+         * @return $this
+         * @throws Exception
          */
         public function setEnv($env)
         {
+            if ($env != "SANDBOX" &&
+                $env != "PRODUCTION" &&
+                $env != "DEVELOP") {
+                throw new Exception('setEnv must be SANDBOX or PRODUCTION');
+            }
+
             $this->env = $env;
             return $this;
         }
