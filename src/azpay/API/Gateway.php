@@ -16,8 +16,6 @@
      */
     class Gateway
     {
-
-
         /**
          * @var
          */
@@ -31,6 +29,9 @@
          */
         private $verification;
 
+        /**
+         * @var Credential
+         */
         private $credential;
 
         /**
@@ -39,6 +40,11 @@
         private $response;
 
 
+        /**
+         * Gateway constructor.
+         *
+         * @param Credential $credential
+         */
         public function __construct(Credential $credential)
         {
             $this->credential = $credential;

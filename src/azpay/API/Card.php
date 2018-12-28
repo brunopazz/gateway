@@ -230,10 +230,10 @@
         }
 
         /**
-         * @param Billing $billing
+         * @param Customer $billing
          * @return $this
          */
-        public function Billing(Billing $billing)
+        public function Customer(Customer $billing)
         {
             $this->billing = $billing;
             return $this;

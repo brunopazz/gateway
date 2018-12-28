@@ -8,8 +8,8 @@
 
     namespace Azpay\API;
 
-    use Azpay\API\Billing as Billing;
     use Azpay\API\Credential as Credential;
+    use Azpay\API\Customer as Customer;
     use Azpay\API\Order as Order;
     use Azpay\API\Payment as Payment;
 
@@ -165,10 +165,10 @@
 
 
         /**
-         * @param \Azpay\API\Billing $billing
+         * @param Customer $billing
          * @return $this
          */
-        public function Billing(Billing $billing)
+        public function Customer(Customer $billing)
         {
             $this->billing = $billing;
             return $this;

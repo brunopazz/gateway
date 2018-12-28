@@ -11,11 +11,11 @@
     use Exception;
 
     /**
-     * Class Billing
+     * Class Customer
      *
      * @package Azpay\API
      */
-    class Billing implements \JsonSerializable
+    class Customer implements \JsonSerializable
     {
 
         /**
