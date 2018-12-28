@@ -20,9 +20,11 @@
     include_once("../src/azpay/API/Card.php");
     include_once("../src/azpay/API/Acquirers.php");
     include_once("../src/azpay/API/Methods.php");
+    include_once("../src/azpay/API/Brand.php");
 
     use Azpay\API\Acquirers as Acquirers;
     use Azpay\API\Billing as Billing;
+    use Azpay\API\Brand as Brand;
     use Azpay\API\Card as Card;
     use Azpay\API\Credential as Credential;
     use Azpay\API\Gateway as Gateway;
@@ -33,15 +35,14 @@
     $gateway = new Gateway($credential);
 
     $billing = new Billing();
-    $billing
-        ->setCustomerIdentity("1")
+    $billing->setCustomerIdentity("1")
         ->setName("Bruno")
         ->setEmail("brunopaz@test.com");
 
 
     $token = new Card($credential);
     $tokencard = $token
-        ->setBrand("visa")
+        ->setBrand(Brand::VISA)
         ->setCardHolder("Bruno paz")
         ->setCardNumber("4111111111111111")
         ->setCardSecurityCode("123")
@@ -50,17 +51,16 @@
         ->Tokenizer();
 
 
-    $transaction = new Transaction($credential);
+    $transaction = new Transaction();
     $transaction->setUrlReturn("");
     $transaction->setFraud("true");
     $transaction->Order()
         ->setReference("ss")
-        ->setTotalAmount("1000");
+        ->setTotalAmount(1000);
 
     $transaction->Payment()
-        ->setAcquirer(Acquirers::CIELO_BUY_PAGE_LOJA)
+        ->setAcquirer(Acquirers::CIELO_V3)
         ->setMethod(Methods::CREDIT_CARD_NO_INTEREST)
-        ->setAmount(1000)
         ->setCurrency("986")
         ->setCountry("BRA")
         ->setNumberOfPayments(1)
@@ -70,8 +70,8 @@
 
 
     try {
-        //$response = $gateway->sale($transaction);
-        $response = $gateway->authorize($transaction);
+        $response = $gateway->sale($transaction);
+        //$response = $gateway->authorize($transaction);
     } catch (Exception $e) {
         var_dump($e->getMessage());
         exit;
