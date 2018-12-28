@@ -8,6 +8,7 @@
 
     namespace Azpay\API;
 
+    use Exception;
 
     /**
      * Class Billing
@@ -75,11 +76,18 @@
         }
 
         /**
-         * @param mixed $customerIdentity
-         * @return Billing
+         * @param $customerIdentity
+         * @return $this
+         * @throws Exception
          */
         public function setCustomerIdentity($customerIdentity)
         {
+            if (!is_string($customerIdentity)) {
+                throw new Exception('setCustomerIdentity must be a string!');
+            }
+            if (strlen($customerIdentity) >= 12) {
+                throw new Exception('setCustomerIdentity must be less than 13 characters');
+            }
             $this->customerIdentity = $customerIdentity;
             return $this;
         }
@@ -93,11 +101,18 @@
         }
 
         /**
-         * @param mixed $name
-         * @return Billing
+         * @param $name
+         * @return $this
+         * @throws Exception
          */
         public function setName($name)
         {
+            if (!is_string($name)) {
+                throw new Exception('setName must be a string!');
+            }
+            if (strlen($name) >= 255) {
+                throw new Exception('setName must be less than 255 characters');
+            }
             $this->name = $name;
             return $this;
         }
@@ -110,12 +125,20 @@
             return $this->address;
         }
 
+
         /**
-         * @param mixed $address
-         * @return Billing
+         * @param $address
+         * @return $this
+         * @throws Exception
          */
         public function setAddress($address)
         {
+            if (!is_string($address)) {
+                throw new Exception('setAddress must be a string!');
+            }
+            if (strlen($address) >= 255) {
+                throw new Exception('setAddress must be less than 255 characters');
+            }
             $this->address = $address;
             return $this;
         }
@@ -128,12 +151,20 @@
             return $this->address2;
         }
 
+
         /**
-         * @param mixed $address2
-         * @return Billing
+         * @param $address2
+         * @return $this
+         * @throws Exception
          */
         public function setAddress2($address2)
         {
+            if (!is_string($address2)) {
+                throw new Exception('setAddress2 must be a string!');
+            }
+            if (strlen($address2) >= 255) {
+                throw new Exception('setAddress2 must be less than 255 characters');
+            }
             $this->address2 = $address2;
             return $this;
         }
@@ -146,12 +177,20 @@
             return $this->city;
         }
 
+
         /**
-         * @param mixed $city
-         * @return Billing
+         * @param $city
+         * @return $this
+         * @throws Exception
          */
         public function setCity($city)
         {
+            if (!is_string($city)) {
+                throw new Exception('setCity must be a string!');
+            }
+            if (strlen($city) >= 255) {
+                throw new Exception('setCity must be less than 255 characters');
+            }
             $this->city = $city;
             return $this;
         }
@@ -164,12 +203,20 @@
             return $this->state;
         }
 
+
         /**
-         * @param mixed $state
-         * @return Billing
+         * @param $state
+         * @return $this
+         * @throws Exception
          */
         public function setState($state)
         {
+            if (!is_string($state)) {
+                throw new Exception('setState must be a string!');
+            }
+            if (strlen($state) >= 255) {
+                throw new Exception('setState must be less than 255 characters');
+            }
             $this->state = $state;
             return $this;
         }
@@ -182,12 +229,20 @@
             return $this->postalCode;
         }
 
+
         /**
-         * @param mixed $postalCode
-         * @return Billing
+         * @param $postalCode
+         * @return $this
+         * @throws Exception
          */
         public function setPostalCode($postalCode)
         {
+            if (!is_string($postalCode)) {
+                throw new Exception('setPostalCode must be a string!');
+            }
+            if (strlen($postalCode) >= 255) {
+                throw new Exception('setPostalCode must be less than 255 characters');
+            }
             $this->postalCode = $postalCode;
             return $this;
         }
@@ -200,12 +255,21 @@
             return $this->country;
         }
 
+
         /**
-         * @param mixed $country
-         * @return Billing
+         * @param $country
+         * @return $this
+         * @throws Exception
          */
         public function setCountry($country)
         {
+            if (!is_string($country)) {
+                throw new Exception('setCountry must be a string!');
+            }
+            if (strlen($country) >= 255) {
+                throw new Exception('setCountry must be less than 255 characters');
+            }
+
             $this->country = $country;
             return $this;
         }
@@ -218,12 +282,20 @@
             return $this->phone;
         }
 
+
         /**
-         * @param mixed $phone
-         * @return Billing
+         * @param $phone
+         * @return $this
+         * @throws Exception
          */
         public function setPhone($phone)
         {
+            if (!is_string($phone)) {
+                throw new Exception('setCountry must be a string!');
+            }
+            if (strlen($phone) >= 20) {
+                throw new Exception('setCountry must be less than 20 characters');
+            }
             $this->phone = $phone;
             return $this;
         }
@@ -236,12 +308,20 @@
             return $this->email;
         }
 
+
         /**
-         * @param mixed $email
-         * @return Billing
+         * @param $email
+         * @return $this
+         * @throws Exception
          */
         public function setEmail($email)
         {
+            if (!is_string($email)) {
+                throw new Exception('setEmail must be a string!');
+            }
+            if (strlen($email) >= 200) {
+                throw new Exception('setEmail must be less than 200 characters');
+            }
             $this->email = $email;
             return $this;
         }

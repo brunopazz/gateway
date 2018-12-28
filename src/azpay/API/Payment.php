@@ -8,6 +8,8 @@
 
     namespace Azpay\API;
 
+    use Exception;
+
     /**
      * Class Payments
      *
@@ -15,6 +17,7 @@
      */
     class Payment implements \JsonSerializable
     {
+
         /**
          * @var
          */
@@ -75,8 +78,16 @@
         }
 
 
+        /**
+         * @param $tokenCard
+         * @return $this
+         * @throws Exception
+         */
         public function setTokenCard($tokenCard)
         {
+            if (!is_string($tokenCard)) {
+                throw new Exception('setTokenCard must be a string!');
+            }
             $this->tokenCard = $tokenCard;
             return $this;
         }
@@ -104,12 +115,17 @@
             return $this->acquirer;
         }
 
+
         /**
-         * @param mixed $acquirer
-         * @return Payment
+         * @param $acquirer
+         * @return $this
+         * @throws Exception
          */
         public function setAcquirer($acquirer)
         {
+            if (empty($acquirer)) {
+                throw new Exception('setAcquirer must be a constant!');
+            }
             $this->acquirer = $acquirer;
             return $this;
         }
@@ -140,12 +156,18 @@
             return $this->amount;
         }
 
+
         /**
-         * @param mixed $amount
-         * @return Payment
+         * @param $amount
+         * @return $this
+         * @throws Exception
          */
         public function setAmount($amount)
         {
+            if (!is_integer($amount)) {
+                throw new Exception('setAmount must be a integer!');
+            }
+
             $this->amount = $amount;
             return $this;
         }
@@ -158,12 +180,17 @@
             return $this->currency;
         }
 
+
         /**
-         * @param mixed $currency
-         * @return Payment
+         * @param $currency
+         * @return $this
+         * @throws Exception
          */
         public function setCurrency($currency)
         {
+            if (!is_numeric($currency)) {
+                throw new Exception('setCurrency must be a numeric!');
+            }
             $this->currency = $currency;
             return $this;
         }
@@ -176,12 +203,17 @@
             return $this->country;
         }
 
+
         /**
-         * @param mixed $country
-         * @return Payment
+         * @param $country
+         * @return $this
+         * @throws Exception
          */
         public function setCountry($country)
         {
+            if (!is_string($country)) {
+                throw new Exception('setCountry must be a string!');
+            }
             $this->country = $country;
             return $this;
         }
@@ -191,15 +223,21 @@
          */
         public function getNumberOfPayments()
         {
+
             return $this->numberOfPayments;
         }
 
         /**
-         * @param mixed $numberOfPayments
-         * @return Payment
+         * @param $numberOfPayments
+         * @return $this
+         * @throws Exception
          */
         public function setNumberOfPayments($numberOfPayments)
         {
+            if (!is_integer($numberOfPayments)) {
+                throw new Exception('setNumberOfPayments must be a integer!');
+            }
+
             $this->numberOfPayments = $numberOfPayments;
             return $this;
         }
@@ -221,7 +259,6 @@
             $this->groupNumber = $groupNumber;
             return $this;
         }
-
 
 
         /**
@@ -286,12 +323,22 @@
             return $this->softDescriptor;
         }
 
+
         /**
-         * @param mixed $softDescriptor
-         * @return Payment
+         * @param $softDescriptor
+         * @return $this
+         * @throws Exception
          */
         public function setSoftDescriptor($softDescriptor)
         {
+            if (!is_string($softDescriptor)) {
+                throw new Exception('setSoftDescriptor must be a string!');
+            }
+
+            if (strlen($softDescriptor) >= 13) {
+                throw new Exception('setSoftDescriptor must be less than 13 characters');
+
+            }
             $this->softDescriptor = $softDescriptor;
             return $this;
         }

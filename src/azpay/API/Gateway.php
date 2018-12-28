@@ -17,6 +17,7 @@
     class Gateway
     {
 
+
         /**
          * @var
          */

@@ -8,6 +8,8 @@
 
     namespace Azpay\API;
 
+    use Exception;
+
 
     /**
      * Class Card
@@ -94,12 +96,17 @@
             return $this->flag;
         }
 
+
         /**
-         * @param mixed $flag
-         * @return Card
+         * @param $flag
+         * @return $this
+         * @throws Exception
          */
-        public function setFlag($flag)
+        public function setBrand($flag)
         {
+            if (!is_string($flag)) {
+                throw new Exception('setBrand must be a string!');
+            }
             $this->flag = $flag;
             return $this;
         }
@@ -112,12 +119,22 @@
             return $this->cardHolder;
         }
 
+
         /**
-         * @param mixed $cardHolder
-         * @return Card
+         * @param $cardHolder
+         * @return $this
+         * @throws Exception
          */
         public function setCardHolder($cardHolder)
         {
+            if (!is_string($cardHolder)) {
+                throw new Exception('setCardHolder must be a string!');
+            }
+
+            if (strlen($cardHolder) >= 21) {
+                throw new Exception('setCardHolder must be less than 21 characters');
+
+            }
             $this->cardHolder = $cardHolder;
             return $this;
         }
@@ -131,11 +148,19 @@
         }
 
         /**
-         * @param mixed $cardNumber
-         * @return Card
+         * @param $cardNumber
+         * @return $this
+         * @throws Exception
          */
         public function setCardNumber($cardNumber)
         {
+            if (!is_string($cardNumber)) {
+                throw new Exception('setCardNumber must be a string!');
+            }
+
+            if (strlen($cardNumber) >= 19) {
+                throw new Exception('setCardNumber must be less than 19 characters');
+            }
             $this->cardNumber = $cardNumber;
             return $this;
         }
@@ -148,12 +173,22 @@
             return $this->cardSecurityCode;
         }
 
+
         /**
-         * @param mixed $cardSecurityCode
-         * @return Card
+         * @param $cardSecurityCode
+         * @return $this
+         * @throws Exception
          */
         public function setCardSecurityCode($cardSecurityCode)
         {
+            if (!is_string($cardSecurityCode)) {
+                throw new Exception('setCardSecurityCode must be a string!');
+            }
+
+            if (strlen($cardSecurityCode) >= 4) {
+                throw new Exception('setCardSecurityCode must be less than 4 characters');
+            }
+
             $this->cardSecurityCode = $cardSecurityCode;
             return $this;
         }
@@ -166,12 +201,22 @@
             return $this->cardExpirationDate;
         }
 
+
         /**
-         * @param mixed $cardExpirationDate
-         * @return Card
+         * @param $cardExpirationDate
+         * @return $this
+         * @throws Exception
          */
         public function setCardExpirationDate($cardExpirationDate)
         {
+            if (!is_string($cardExpirationDate)) {
+                throw new Exception('setCardExpirationDate must be a string!');
+            }
+
+            if (strlen($cardExpirationDate) >= 6) {
+                throw new Exception('setCardExpirationDate must be less than 6 characters - MMYYYY');
+            }
+
             $this->cardExpirationDate = $cardExpirationDate;
             return $this;
         }
