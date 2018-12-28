@@ -49,11 +49,19 @@
          */
         private $billing;
 
+        /**
+         * @var
+         */
+        private $credential;
 
-        public function __construct(Credential $credential)
+
+        /**
+         * Transaction constructor.
+         */
+        public function __construct()
         {
             $this->version = "1.0.0";
-            $this->setVerification($credential);
+            //$this->credential = $credential;
             return $this;
 
         }
@@ -66,6 +74,24 @@
         public function __set($name, $value)
         {
             $this->$name = $value;
+            return $this;
+        }
+
+        /**
+         * @return \Azpay\API\Credential
+         */
+        public function getCredential(): \Azpay\API\Credential
+        {
+            return $this->credential;
+        }
+
+        /**
+         * @param \Azpay\API\Credential $credential
+         * @return Transaction
+         */
+        public function setCredential(\Azpay\API\Credential $credential): Transaction
+        {
+            $this->credential = $credential;
             return $this;
         }
 
@@ -120,10 +146,12 @@
 
         /**
          * @return \Azpay\API\Payment
+         * @throws \Exception
          */
         public function Payment()
         {
             $this->payment = new Payment();
+            $this->payment->setAmount($this->getOrder()->getTotalAmount());
             return $this->payment;
         }
 
@@ -136,6 +164,10 @@
         }
 
 
+        /**
+         * @param \Azpay\API\Billing $billing
+         * @return $this
+         */
         public function Billing(Billing $billing)
         {
             $this->billing = $billing;

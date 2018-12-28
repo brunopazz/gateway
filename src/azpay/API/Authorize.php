@@ -19,8 +19,9 @@
 
         private $jsonRequest;
 
-        public function __construct(Transaction $transaction)
+        public function __construct(Transaction $transaction, Credential $credential)
         {
+            $transaction->setVerification($credential);
             $this->setJsonRequest($transaction);
         }
 

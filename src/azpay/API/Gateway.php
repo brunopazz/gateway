@@ -52,9 +52,8 @@
          */
         public function Authorize(Transaction $transaction)
         {
-            $authorize = new Authorize($transaction);
+            $authorize = new Authorize($transaction, $this->credential);
             $request = new Request($this->credential);
-
             $this->response = $request->post("/v1/receiver", $authorize->toJSON());
 
             return $this;
@@ -69,7 +68,7 @@
         {
 
 
-            $sale = new Sale($transaction);
+            $sale = new Sale($transaction, $this->credential);
             $request = new Request($this->credential);
 
 
