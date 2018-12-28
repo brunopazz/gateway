@@ -238,6 +238,12 @@
                 throw new Exception('setNumberOfPayments must be a integer!');
             }
 
+            if ($numberOfPayments != 1 && $this->getMethod() == Methods::CREDIT_CARD_NO_INTEREST) {
+                throw new Exception('setNumberOfPayments must be 1 (one) when use Methods::CREDIT_CARD_NO_INTEREST');
+            }
+            if ($numberOfPayments != 1 && $this->getMethod() == Methods::DEBIT_CARD) {
+                throw new Exception('setNumberOfPayments must be 1 (one) when use Methods::DEBIT_CARD');
+            }
             $this->numberOfPayments = $numberOfPayments;
             return $this;
         }

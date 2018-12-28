@@ -33,7 +33,6 @@
 
     $credential = new Credential("1", "d41d8cd98f00b204e9800998ecf8427e", "sandbox");
     $gateway = new Gateway($credential);
-
     $billing = new Billing();
     $billing->setCustomerIdentity("1")
         ->setName("Bruno")
@@ -70,8 +69,8 @@
 
 
     try {
-        $response = $gateway->sale($transaction);
-        //$response = $gateway->authorize($transaction);
+        //$response = $gateway->sale($transaction);
+        $response = $gateway->authorize($transaction);
     } catch (Exception $e) {
         var_dump($e->getMessage());
         exit;
