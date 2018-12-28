@@ -70,7 +70,7 @@
                     "merchantKey" => $this->credential->getMerchantKey()
                 ],
                 "tokencard"    => [
-                    "flag"               => $this->getFlag(),
+                    "flag"               => $this->getBrand(),
                     "cardHolder"         => $this->getCardHolder(),
                     "cardNumber"         => $this->getCardNumber(),
                     "cardSecurityCode"   => $this->getCardSecurityCode(),
@@ -91,7 +91,7 @@
         /**
          * @return mixed
          */
-        public function getFlag()
+        public function getBrand()
         {
             return $this->flag;
         }
