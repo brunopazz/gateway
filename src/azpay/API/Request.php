@@ -82,6 +82,8 @@
             } elseif ($method == 'PUT') {
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+            } elseif ($method == 'GET') {
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
             }
             curl_setopt($curl, CURLOPT_ENCODING, "");
             curl_setopt_array($curl, $defaultCurlOptions);

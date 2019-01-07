@@ -85,46 +85,45 @@
 
 
         /**
-         * @param Transaction $transaction
-         * @param $transactionId
+         * @param string $transactionId
          * @param null $amount
          * @return $this
          * @throws \Exception
          */
-        public function Capture(Transaction $transaction, $transactionId, $amount = NULL)
+        public function Capture(string $transactionId, $amount = NULL)
         {
-            $sale = new Capture($transaction, $transactionId, $amount);
+            $sale = new Capture($this->credential, $transactionId, $amount);
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
 
             return $this;
         }
 
+
         /**
-         * @param Transaction $transaction
-         * @param $transactionId
+         * @param string $transactionId
          * @param null $amount
          * @return $this
          * @throws \Exception
          */
-        public function Cancel(Transaction $transaction, $transactionId, $amount = NULL)
+        public function Cancel(string $transactionId, $amount = NULL)
         {
-            $sale = new Cancel($transaction, $transactionId, $amount);
+            $sale = new Cancel($this->credential, $transactionId, $amount);
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
 
             return $this;
         }
 
+
         /**
-         * @param Transaction $transaction
-         * @param $transactionId
+         * @param string $transactionId
          * @return $this
          * @throws \Exception
          */
-        public function Report(Transaction $transaction, $transactionId)
+        public function Report(string $transactionId)
         {
-            $sale = new Report($transaction, $transactionId);
+            $sale = new Report($this->credential, $transactionId);
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
 
@@ -211,6 +210,40 @@
                 return false;
             }
         }
+
+        /**
+         * @return bool
+         */
+        public function isRedirect()
+        {
+            if (isset($this->response["status"]) && isset($this->response["processor"]["urlAuthentication"]) && ($this->response["status"] == 0)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /**
+         * @return string
+         */
+        public function getRedirectUrl()
+        {
+            if (isset($this->response["processor"]["urlAuthentication"])) {
+                return $this->response["processor"]["urlAuthentication"];
+            }
+            return "";
+
+        }
+
+        /**
+         *
+         */
+        public function redirect()
+        {
+            header('Location: ' . $this->getRedirectUrl());
+        }
+
+
 
         /**
          * @return bool

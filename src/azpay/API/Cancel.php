@@ -17,20 +17,23 @@
         private $amount;
 
 
-        public function __construct(Transaction $transaction, $transactionId, $amount = NULL)
+        public function __construct(Credential $credential, string $transactionId, $amount = NULL)
         {
             $this->transactionId = $transactionId;
             $this->amount = $amount;
-            $this->setJsonRequest($transaction);
+            $this->setJsonRequest($credential);
         }
 
 
-        public function setJsonRequest(Transaction $transaction)
+        public function setJsonRequest(Credential $credential)
         {
 
             $json["transaction-request"] = [
-                "version"      => $transaction->getVersion(),
-                "verification" => $transaction->getVerification(),
+                "version"      => "1.0.0",
+                "verification" => [
+                    "merchantId"  => $credential->getMerchantId(),
+                    "merchantKey" => $credential->getMerchantKey()
+                ],
                 "cancel"       => [
                     "transactionId" => $this->transactionId
                 ]

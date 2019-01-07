@@ -25,6 +25,11 @@
         /**
          * @var
          */
+        private $cpf;
+
+        /**
+         * @var
+         */
         private $name = "";
         /**
          * @var
@@ -58,6 +63,7 @@
          * @var
          */
         private $email = "";
+
 
         /**
          * @return array|mixed
@@ -325,5 +331,32 @@
             $this->email = $email;
             return $this;
         }
+
+        /**
+         * @return mixed
+         */
+        public function getCpf()
+        {
+            return $this->cpf;
+        }
+
+        /**
+         * @param mixed $cpf
+         * @return Customer
+         */
+        public function setCpf($cpf)
+        {
+
+            if (!is_numeric($cpf)) {
+                throw new Exception('setCpf must be a numeric!');
+            }
+            if (strlen($cpf) != 11) {
+                throw new Exception('setCpf must be 11 characters');
+            }
+
+            $this->cpf = $cpf;
+            return $this;
+        }
+
 
     }
