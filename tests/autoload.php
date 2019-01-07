@@ -1,0 +1,20 @@
+<?php
+
+    include_once("../src/gateway/API/Gateway.php");
+    include_once("../src/gateway/API/Credential.php");
+    include_once("../src/gateway/API/Transaction.php");
+    include_once("../src/gateway/API/Order.php");
+    include_once("../src/gateway/API/Payment.php");
+    include_once("../src/gateway/API/Authorize.php");
+    include_once("../src/gateway/API/Sale.php");
+    include_once("../src/gateway/API/Customer.php");
+    include_once("../src/gateway/API/Request.php");
+    include_once("../src/gateway/API/Capture.php");
+    include_once("../src/gateway/API/Cancel.php");
+    include_once("../src/gateway/API/Report.php");
+    include_once("../src/gateway/API/Card.php");
+    include_once("../src/gateway/API/Acquirers.php");
+    include_once("../src/gateway/API/Methods.php");
+    include_once("../src/gateway/API/Brand.php");
+    include_once("../src/gateway/API/Environment.php");
+    include_once("../src/gateway/API/Currency.php");

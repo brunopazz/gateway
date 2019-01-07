@@ -5,28 +5,14 @@
      * Date: 2018-12-26
      * Time: 22:50
      */
-    include_once("../src/gateway/API/Gateway.php");
-    include_once("../src/gateway/API/Credential.php");
-    include_once("../src/gateway/API/Transaction.php");
-    include_once("../src/gateway/API/Order.php");
-    include_once("../src/gateway/API/Payment.php");
-    include_once("../src/gateway/API/Authorize.php");
-    include_once("../src/gateway/API/Sale.php");
-    include_once("../src/gateway/API/Customer.php");
-    include_once("../src/gateway/API/Request.php");
-    include_once("../src/gateway/API/Capture.php");
-    include_once("../src/gateway/API/Cancel.php");
-    include_once("../src/gateway/API/Report.php");
-    include_once("../src/gateway/API/Card.php");
-    include_once("../src/gateway/API/Acquirers.php");
-    include_once("../src/gateway/API/Methods.php");
-    include_once("../src/gateway/API/Brand.php");
-    include_once("../src/gateway/API/Environment.php");
+    include_once "autoload.php";
+
 
     use Azpay\API\Acquirers as Acquirers;
     use Azpay\API\Brand as Brand;
     use Azpay\API\Card as Card;
     use Azpay\API\Credential as Credential;
+    use Azpay\API\Currency as Currency;
     use Azpay\API\Customer as Customer;
     use Azpay\API\Environment as Environment;
     use Azpay\API\Gateway as Gateway;
@@ -85,7 +71,7 @@
         $transaction->Payment()
             ->setAcquirer(Acquirers::CIELO_V3)
             ->setMethod(Methods::DEBIT_CARD)
-            ->setCurrency("986")
+            ->setCurrency(Currency::BRAZIL_BRAZILIAN_REAL_BRL)
             ->setCountry("BRA")
             ->setNumberOfPayments(1)
             ->setTokenCard($tokencard)
