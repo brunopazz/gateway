@@ -136,11 +136,11 @@
         PUBLIC CONST KAZAKHSTAN_TENGE_KZT                                               = "398";
         PUBLIC CONST KENYA_KENYAN_SHILLING_KES                                          = "404";
         PUBLIC CONST KIRIBATI_AUSTRALIAN_DOLLAR_AUD                                     = "036";
-        PUBLIC CONST KOREA_DEMOCRATIC_PEOPLEÕS_REPUBLIC_OF_NORTH_KOREAN_WON_KPW         = "408";
+        PUBLIC CONST KOREA_DEMOCRATIC_PEOPLEOS_REPUBLIC_OF_NORTH_KOREAN_WON_KPW         = "408";
         PUBLIC CONST KOREA_REPUBLIC_OF_WON_KRW                                          = "410";
         PUBLIC CONST KUWAIT_KUWAITI_DINAR_KWD                                           = "414";
         PUBLIC CONST KYRGYZSTAN_SOM_KGS                                                 = "417";
-        PUBLIC CONST LAO_PEOPLEÕS_DEMOCRATIC_REPUBLIC_KIP_LAK                           = "418";
+        PUBLIC CONST LAO_PEOPLEOS_DEMOCRATIC_REPUBLIC_KIP_LAK                           = "418";
         PUBLIC CONST LATVIA_LATVIAN_LATS_LVL                                            = "428";
         PUBLIC CONST LEBANON_LEBANESE_POUND_LBP                                         = "422";
         PUBLIC CONST LESOTHO_LOTI_LSL                                                   = "426";
@@ -202,11 +202,11 @@
         PUBLIC CONST PORTUGAL_EURO_EUR                                                  = "978";
         PUBLIC CONST PUERTO_RICO_US_DOLLAR_USD                                          = "840";
         PUBLIC CONST QATAR_QATARI_RIAL_QAR                                              = "634";
-        PUBLIC CONST RƑUNION_EURO_EUR                                                   = "978";
+        PUBLIC CONST RFUNION_EURO_EUR                                                   = "978";
         PUBLIC CONST ROMANIA_NEW_ROMANIAN_LEU_RON                                       = "946";
         PUBLIC CONST RUSSIAN_FEDERATION_RUSSIAN_RUBLE_RUB                               = "643";
         PUBLIC CONST RWANDA_RWANDA_FRANC_RWF                                            = "646";
-        PUBLIC CONST SAINT_BARTHƑLEMY_EURO_EUR                                          = "978";
+        PUBLIC CONST SAINT_BARTHFLEMY_EURO_EUR                                          = "978";
         PUBLIC CONST SAINT_HELENA_ASCENSION_AND_TRISTAN_DA_CUNHA_SAINT_HELENA_POUND_SHP = "654";
         PUBLIC CONST SAINT_KITTS_AND_NEVIS_EAST_CARIBBEAN_DOLLAR_XCD                    = "951";
         PUBLIC CONST SAINT_LUCIA_EAST_CARIBBEAN_DOLLAR_XCD                              = "951";
@@ -247,7 +247,7 @@
         PUBLIC CONST TIMOR_LESTE_US_DOLLAR_USD                                          = "840";
         PUBLIC CONST TOGO_CFA_FRANC_BCEAO_XOF                                           = "952";
         PUBLIC CONST TOKELAU_NEW_ZEALAND_DOLLAR_NZD                                     = "554";
-        PUBLIC CONST TONGA_PAÕANGA_TOP                                                  = "776";
+        PUBLIC CONST TONGA_PAOANGA_TOP                                                  = "776";
         PUBLIC CONST TRINIDAD_AND_TOBAGO_TRINIDAD_AND_TOBAGO_DOLLAR_TTD                 = "780";
         PUBLIC CONST TUNISIA_TUNISIAN_DINAR_TND                                         = "788";
         PUBLIC CONST TURKEY_TURKISH_LIRA_TRY                                            = "949";
