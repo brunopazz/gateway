@@ -96,7 +96,7 @@
             }
 
             if (curl_getinfo($curl, CURLINFO_HTTP_CODE) >= 400) {
-                throw new Exception(json_decode($response)->result->error->details, CURLINFO_HTTP_CODE);
+                throw new Exception(htmlentities(json_decode($response)->result->error->details), CURLINFO_HTTP_CODE);
             }
             if (!$response) {
                 print "URL ERROR";

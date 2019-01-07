@@ -7,7 +7,6 @@
      */
     include_once "autoload.php";
 
-
     use Azpay\API\Acquirers as Acquirers;
     use Azpay\API\Brand as Brand;
     use Azpay\API\Card as Card;
@@ -17,6 +16,7 @@
     use Azpay\API\Environment as Environment;
     use Azpay\API\Gateway as Gateway;
     use Azpay\API\Methods as Methods;
+    use Azpay\API\Rebill as Rebill;
     use Azpay\API\Transaction as Transaction;
     use Exception as Exception;
 
@@ -62,15 +62,19 @@
 
 
         $transaction = new Transaction();
-        $transaction->setUrlReturn("http://127.0.0.1:8989/debit.php");
+        //$transaction->setUrlReturn("http://127.0.0.1:8989/teste.php");
         $transaction->setFraud("true");
         $transaction->Order()
             ->setReference("ss")
-            ->setTotalAmount(1000);
+            ->setTotalAmount(1000)
+            ->setDateStart("2019-01-08")
+            ->setDateEnd("2019-01-10")
+            ->setPeriod(Rebill::DAILY)
+            ->setFrequency(1);
 
         $transaction->Payment()
             ->setAcquirer(Acquirers::CIELO_V3)
-            ->setMethod(Methods::DEBIT_CARD)
+            ->setMethod(Methods::CREDIT_CARD_NO_INTEREST)
             ->setCurrency(Currency::BRAZIL_BRAZILIAN_REAL_BRL)
             ->setCountry("BRA")
             ->setNumberOfPayments(1)
@@ -80,10 +84,10 @@
 
 
         try {
-            //$response = $gateway->sale($transaction);
-            $response = $gateway->authorize($transaction);
+            $response = $gateway->rebill($transaction);
+            //$response = $gateway->authorize($transaction);
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            print_r($e->getMessage());
             exit;
         }
 
@@ -98,6 +102,7 @@
 
 
         } elseif ($response->isAuthorized()) {
+            print " AProvado: ";
             print $response->getTransactionID();
             print " - ";
             print $response->getStatus();
@@ -109,7 +114,7 @@
 
         if ($response->canCapture()) {
 
-            $response = $gateway->Capture($transaction, $response->getTransactionID());
+            $response = $gateway->Capture($response->getTransactionID());
             print " <br> ";
             print $response->getTransactionID();
             print " - CAPTURADO - ";

@@ -70,7 +70,7 @@
 
 
         /**
-         * @return mixed
+         * @return  \Azpay\API\Card
          */
         public function getTokenCard()
         {
@@ -83,11 +83,9 @@
          * @return $this
          * @throws Exception
          */
-        public function setTokenCard($tokenCard)
+        public function setTokenCard(Card $tokenCard)
         {
-            if (!is_string($tokenCard)) {
-                throw new Exception('setTokenCard must be a string!');
-            }
+
             $this->tokenCard = $tokenCard;
             return $this;
         }
@@ -98,6 +96,7 @@
          */
         public function jsonSerialize()
         {
+            $this->tokenCard = $this->getTokenCard()->getTokenCard();
             $vars = get_object_vars($this);
             $vars_clear = array_filter($vars, function ($value) {
                 return NULL !== $value;

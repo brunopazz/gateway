@@ -72,17 +72,24 @@
          */
         public function Sale(Transaction $transaction)
         {
-
-
             $sale = new Sale($transaction, $this->credential);
             $request = new Request($this->credential);
-
-
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
-
             return $this;
         }
 
+        /**
+         * @param Transaction $transaction
+         * @return $this
+         * @throws \Exception
+         */
+        public function Rebill(Transaction $transaction)
+        {
+            $sale = new Rebill($transaction, $this->credential);
+            $request = new Request($this->credential);
+            $this->response = $request->post("/v1/receiver", $sale->toJSON());
+            return $this;
+        }
 
         /**
          * @param string $transactionId
@@ -204,6 +211,13 @@
          */
         public function isAuthorized()
         {
+
+            if (isset($this->response["status"]) && $this->response["status"] == 10) {
+                if ($this->response["processor"]["payments"]["1"]["payment"]["status"] == 8) {
+                    return true;
+                }
+            }
+
             if (isset($this->response["status"]) && ($this->response["status"] == 3 || $this->response["status"] == 8)) {
                 return true;
             } else {

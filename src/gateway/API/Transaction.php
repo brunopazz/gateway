@@ -118,7 +118,7 @@
         }
 
         /**
-         * @return mixed
+         * @return \Azpay\API\Order
          */
         public function getOrder()
         {
@@ -136,7 +136,7 @@
         }
 
         /**
-         * @return mixed
+         * @return \Azpay\API\Payment
          */
         public function getPayment()
         {
@@ -156,7 +156,7 @@
         }
 
         /**
-         * @return mixed
+         * @return  \Azpay\API\Customer
          */
         public function getBilling()
         {

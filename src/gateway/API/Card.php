@@ -47,6 +47,8 @@
          */
         private $credential;
 
+        private $tokenCard;
+
         /**
          * Card constructor.
          *
@@ -54,9 +56,10 @@
          */
         public function __construct(Credential $credential) { $this->credential = $credential; }
 
+
         /**
-         * @return bool
-         * @throws \Exception
+         * @return $this
+         * @throws Exception
          */
         public function Tokenizer()
         {
@@ -82,10 +85,28 @@
             $response = $request->post("/v1/token/add", json_encode($json));
 
             if (isset($response["TokenCard"])) {
-                return $response["TokenCard"];
-            } else {
-                return false;
+                $this->tokenCard = $response["TokenCard"];
             }
+
+            return $this;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getTokenCard()
+        {
+            return $this->tokenCard;
+        }
+
+        /**
+         * @param mixed $tokenCard
+         * @return Card
+         */
+        public function setTokenCard($tokenCard)
+        {
+            $this->tokenCard = $tokenCard;
+            return $this;
         }
 
         /**
@@ -226,16 +247,21 @@
          */
         public function jsonSerialize()
         {
-            return get_object_vars($this);
+            $vars = get_object_vars($this);
+            $vars_clear = array_filter($vars, function ($value) {
+                return NULL !== $value;
+            });
+
+            return $vars_clear;
         }
 
         /**
-         * @param Customer $billing
+         * @param Customer $customer
          * @return $this
          */
-        public function Customer(Customer $billing)
+        public function Customer(Customer $customer)
         {
-            $this->billing = $billing;
+            $this->billing = $customer;
             return $this;
         }
 
