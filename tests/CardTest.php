@@ -9,8 +9,8 @@
 
     namespace Azpay\API;
 
-    include_once("../src/azpay/API/Credential.php");
-    include_once("../src/azpay/API/Card.php");
+    include_once("../src/gateway/API/Credential.php");
+    include_once("../src/gateway/API/Card.php");
 
 
     use Azpay\API\Card as Card;
