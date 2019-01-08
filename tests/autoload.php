@@ -18,4 +18,3 @@
     include_once("../src/gateway/API/Brand.php");
     include_once("../src/gateway/API/Environment.php");
     include_once("../src/gateway/API/Currency.php");
-    include_once("../src/gateway/API/Rebill.php");
