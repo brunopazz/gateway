@@ -17,9 +17,16 @@
     class Sale extends Authorize
     {
 
+        /**
+         * @var
+         */
         private $jsonRequest;
 
 
+        /**
+         * @param Transaction $transaction
+         * @return mixed
+         */
         public function setJsonRequest(Transaction $transaction)
         {
 
@@ -38,6 +45,9 @@
             return $this->jsonRequest = $json;
         }
 
+        /**
+         * @return false|string
+         */
         public function toJSON()
         {
             return json_encode($this->jsonRequest, JSON_PRETTY_PRINT);

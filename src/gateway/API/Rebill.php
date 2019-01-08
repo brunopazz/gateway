@@ -17,12 +17,33 @@
     class Rebill implements \JsonSerializable
     {
 
+        /**
+         *
+         */
         public const DAILY   = 1;
+        /**
+         *
+         */
         public const WEEKLY  = 2;
+        /**
+         *
+         */
         public const MONTHLY = 3;
-        public const YEARLY  = 4;
+        /**
+         *
+         */
+        public const YEARLY = 4;
+        /**
+         * @var
+         */
         private $jsonRequest;
 
+        /**
+         * Rebill constructor.
+         *
+         * @param Transaction $transaction
+         * @param Credential $credential
+         */
         public function __construct(Transaction $transaction, Credential $credential)
         {
             $transaction->setVerification($credential);
@@ -30,12 +51,19 @@
         }
 
 
+        /**
+         * @return mixed
+         */
         public function getJsonRequest()
         {
             return $this->jsonRequest;
         }
 
 
+        /**
+         * @param Transaction $transaction
+         * @return mixed
+         */
         public function setJsonRequest(Transaction $transaction)
         {
 
@@ -69,11 +97,17 @@
         }
 
 
+        /**
+         * @return false|string
+         */
         public function toJSON()
         {
             return json_encode($this->jsonRequest, JSON_PRETTY_PRINT);
         }
 
+        /**
+         * @return array|mixed
+         */
         public function jsonSerialize()
         {
             return get_object_vars($this);

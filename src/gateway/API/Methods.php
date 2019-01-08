@@ -9,6 +9,11 @@
     namespace Azpay\API;
 
 
+    /**
+     * Class Methods
+     *
+     * @package Azpay\API
+     */
     abstract class Methods
     {
         public const CREDIT_CARD_NO_INTEREST          = 1;

@@ -47,6 +47,9 @@
          */
         private $credential;
 
+        /**
+         * @var
+         */
         private $tokenCard;
 
         /**

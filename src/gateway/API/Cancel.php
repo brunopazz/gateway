@@ -9,14 +9,35 @@
     namespace Azpay\API;
 
 
+    /**
+     * Class Cancel
+     *
+     * @package Azpay\API
+     */
     class Cancel implements \JsonSerializable
     {
 
+        /**
+         * @var
+         */
         private $jsonRequest;
+        /**
+         * @var string
+         */
         private $transactionId;
+        /**
+         * @var null
+         */
         private $amount;
 
 
+        /**
+         * Cancel constructor.
+         *
+         * @param Credential $credential
+         * @param string $transactionId
+         * @param null $amount
+         */
         public function __construct(Credential $credential, string $transactionId, $amount = NULL)
         {
             $this->transactionId = $transactionId;
@@ -25,6 +46,10 @@
         }
 
 
+        /**
+         * @param Credential $credential
+         * @return mixed
+         */
         public function setJsonRequest(Credential $credential)
         {
 
@@ -46,11 +71,17 @@
             return $this->jsonRequest = $json;
         }
 
+        /**
+         * @return false|string
+         */
         public function toJSON()
         {
             return json_encode($this->jsonRequest, JSON_PRETTY_PRINT);
         }
 
+        /**
+         * @return array|mixed
+         */
         public function jsonSerialize()
         {
             return get_object_vars($this);

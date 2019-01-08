@@ -25,6 +25,11 @@
         private $baseUrl = '';
 
 
+        /**
+         * Request constructor.
+         *
+         * @param Credential $credential
+         */
         function __construct(Credential $credential)
         {
             if ($credential->getEnv() == "PRODUCTION") {

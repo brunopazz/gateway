@@ -9,13 +9,30 @@
     namespace Azpay\API;
 
 
+    /**
+     * Class Report
+     *
+     * @package Azpay\API
+     */
     class Report implements \JsonSerializable
     {
 
+        /**
+         * @var
+         */
         private $jsonRequest;
+        /**
+         * @var
+         */
         private $transactionId;
 
 
+        /**
+         * Report constructor.
+         *
+         * @param Credential $credential
+         * @param $transactionId
+         */
         public function __construct(Credential $credential, $transactionId)
         {
             $this->transactionId = $transactionId;
@@ -23,6 +40,10 @@
         }
 
 
+        /**
+         * @param Credential $credential
+         * @return mixed
+         */
         public function setJsonRequest(Credential $credential)
         {
 
@@ -40,11 +61,17 @@
             return $this->jsonRequest = $json;
         }
 
+        /**
+         * @return false|string
+         */
         public function toJSON()
         {
             return json_encode($this->jsonRequest, JSON_PRETTY_PRINT);
         }
 
+        /**
+         * @return array|mixed
+         */
         public function jsonSerialize()
         {
             return get_object_vars($this);

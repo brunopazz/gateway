@@ -340,9 +340,11 @@
             return $this->cpf;
         }
 
+
         /**
-         * @param mixed $cpf
-         * @return Customer
+         * @param $cpf
+         * @return $this
+         * @throws Exception
          */
         public function setCpf($cpf)
         {

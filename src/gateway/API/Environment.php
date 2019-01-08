@@ -9,6 +9,11 @@
     namespace Azpay\API;
 
 
+    /**
+     * Class Environment
+     *
+     * @package Azpay\API
+     */
     abstract class Environment
     {
         public const SANDBOX    = "SANDBOX";

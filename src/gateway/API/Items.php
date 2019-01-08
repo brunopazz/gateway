@@ -9,12 +9,29 @@
     namespace Azpay\API;
 
 
+    /**
+     * Class Items
+     *
+     * @package Azpay\API
+     */
     class Items implements \JsonSerializable
     {
+        /**
+         * @var
+         */
         private $productName;
+        /**
+         * @var
+         */
         private $quantity;
+        /**
+         * @var
+         */
         private $price;
 
+        /**
+         * @return array|mixed
+         */
         public function jsonSerialize()
         {
             return get_object_vars($this);

@@ -17,8 +17,17 @@
     class Authorize implements \JsonSerializable
     {
 
+        /**
+         * @var
+         */
         private $jsonRequest;
 
+        /**
+         * Authorize constructor.
+         *
+         * @param Transaction $transaction
+         * @param Credential $credential
+         */
         public function __construct(Transaction $transaction, Credential $credential)
         {
             $transaction->setVerification($credential);
@@ -26,12 +35,19 @@
         }
 
 
+        /**
+         * @return mixed
+         */
         public function getJsonRequest()
         {
             return $this->jsonRequest;
         }
 
 
+        /**
+         * @param Transaction $transaction
+         * @return mixed
+         */
         public function setJsonRequest(Transaction $transaction)
         {
 
@@ -51,11 +67,17 @@
         }
 
 
+        /**
+         * @return false|string
+         */
         public function toJSON()
         {
             return json_encode($this->jsonRequest, JSON_PRETTY_PRINT);
         }
 
+        /**
+         * @return array|mixed
+         */
         public function jsonSerialize()
         {
             return get_object_vars($this);
