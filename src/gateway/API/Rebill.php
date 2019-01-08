@@ -20,11 +20,11 @@
         /**
          *
          */
-        public const DAILY   = 1;
+        public const DAILY = 1;
         /**
          *
          */
-        public const WEEKLY  = 2;
+        public const WEEKLY = 2;
         /**
          *
          */
@@ -79,16 +79,16 @@
                         "country"            => $transaction->getPayment()->getCountry(),
                         "numberOfPayments"   => $transaction->getPayment()->getNumberOfPayments(),
                         "groupNumber"        => $transaction->getPayment()->getGroupNumber(),
-                        "flag"               => $transaction->getPayment()->getTokenCard()->getBrand(),
-                        "cardHolder"         => $transaction->getPayment()->getTokenCard()->getCardHolder(),
-                        "cardNumber"         => $transaction->getPayment()->getTokenCard()->getCardNumber(),
-                        "cardSecurityCode"   => $transaction->getPayment()->getTokenCard()->getCardSecurityCode(),
-                        "cardExpirationDate" => $transaction->getPayment()->getTokenCard()->getCardExpirationDate(),
+                        "flag"               => $transaction->getPayment()->getCard()->getBrand(),
+                        "cardHolder"         => $transaction->getPayment()->getCard()->getCardHolder(),
+                        "cardNumber"         => $transaction->getPayment()->getCard()->getCardNumber(),
+                        "cardSecurityCode"   => $transaction->getPayment()->getCard()->getCardSecurityCode(),
+                        "cardExpirationDate" => $transaction->getPayment()->getCard()->getCardExpirationDate(),
                         "saveCreditCard"     => "true",
                         "generateToken"      => "true",
                         "departureTax"       => "true",
                     ],
-                    "billing"           => $transaction->getBilling(),
+                    "billing"           => $transaction->getCustomer(),
                     "urlReturn"         => $transaction->getUrlReturn(),
                 ]
             ];

@@ -21,7 +21,7 @@
         public const PAYPAL_EXPRESS_CHECKOUT     = 8;
         public const PAGSEGURO_CHECKOUT_EXPRESSO = 9;
         public const BRADESCO                    = 10;
-        public const ITAÚ                        = 11;
+        public const ITAU                        = 11;
         public const BANCO_DO_BRASIL             = 12;
         public const BANCO_SANTANDER             = 13;
         public const CAIXA_BOLETO_SEM_REGISTRO   = 14;

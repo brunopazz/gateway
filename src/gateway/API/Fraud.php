@@ -19,11 +19,11 @@
         /**
          * @var
          */
-        private $operator;
+        private $operator = "";
         /**
          * @var
          */
-        private $method;
+        private $method = "";
         /**
          * @var
          */
@@ -88,18 +88,23 @@
         /**
          * @return mixed
          */
-        public function getItens()
+        public function getItems()
         {
             return $this->itens;
         }
 
+
         /**
-         * @param mixed $itens
-         * @return Fraud
+         * @param Items $itens
+         * @return $this
          */
-        public function setItens(Items $itens)
+        public function setItems(array $itens)
         {
-            $this->itens[] = $itens;
+            foreach ($itens as $item) {
+                $this->itens["item"][] = $item;
+            }
+
+
             return $this;
         }
 
@@ -108,7 +113,13 @@
          */
         public function jsonSerialize()
         {
-            return get_object_vars($this);
+
+            $vars = get_object_vars($this);
+            $vars_clear = array_filter($vars, function ($value) {
+                return NULL !== $value;
+            });
+
+            return $vars_clear;
         }
 
         /**

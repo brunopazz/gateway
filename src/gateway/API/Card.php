@@ -43,55 +43,26 @@
          */
         private $billing;
         /**
-         * @var Credential
-         */
-        private $credential;
-
-        /**
          * @var
          */
         private $tokenCard;
 
-        /**
-         * Card constructor.
-         *
-         * @param $credential
-         */
-        public function __construct(Credential $credential) { $this->credential = $credential; }
 
 
         /**
-         * @return $this
-         * @throws Exception
+         * @return mixed
          */
-        public function Tokenizer()
+        public function getBilling()
         {
+            return $this->billing;
+        }
 
-            $request = new Request($this->credential);
-
-            $json["transaction-request"] = [
-                "version"      => "1.0.0",
-                "verification" => [
-                    "merchantId"  => $this->credential->getMerchantId(),
-                    "merchantKey" => $this->credential->getMerchantKey()
-                ],
-                "tokencard"    => [
-                    "flag"               => $this->getBrand(),
-                    "cardHolder"         => $this->getCardHolder(),
-                    "cardNumber"         => $this->getCardNumber(),
-                    "cardSecurityCode"   => $this->getCardSecurityCode(),
-                    "cardExpirationDate" => $this->getCardExpirationDate(),
-                    "billing"            => $this->billing
-                ]
-            ];
-
-            $response = $request->post("/v1/token/add", json_encode($json));
-
-            if (isset($response["TokenCard"])) {
-                $this->tokenCard = $response["TokenCard"];
-            }
-
-            return $this;
+        /**
+         * @param mixed $billing
+         */
+        public function setBilling($billing): void
+        {
+            $this->billing = $billing;
         }
 
         /**
@@ -108,7 +79,7 @@
          */
         public function setTokenCard($tokenCard)
         {
-            $this->tokenCard = $tokenCard;
+            $this->tokenCard = (string)$tokenCard;
             return $this;
         }
 
@@ -262,7 +233,7 @@
          * @param Customer $customer
          * @return $this
          */
-        public function Customer(Customer $customer)
+        public function Customer($customer)
         {
             $this->billing = $customer;
             return $this;

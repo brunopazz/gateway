@@ -59,6 +59,12 @@
         public function Authorize(Transaction $transaction)
         {
             $authorize = new Authorize($transaction, $this->credential);
+
+            $token = new Tokenization($this->credential, $transaction->getPayment()->getCard(),
+                $transaction->getCustomer());
+            $transaction->getPayment()->setTokenCard($token->getTokenCard());
+
+
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $authorize->toJSON());
 
@@ -73,6 +79,11 @@
         public function Sale(Transaction $transaction)
         {
             $sale = new Sale($transaction, $this->credential);
+
+            $token = new Tokenization($this->credential, $transaction->getPayment()->getCard(),
+                $transaction->getCustomer());
+            $transaction->getPayment()->setTokenCard($token->getTokenCard());
+
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
             return $this;
@@ -86,6 +97,7 @@
         public function Rebill(Transaction $transaction)
         {
             $sale = new Rebill($transaction, $this->credential);
+
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
             return $this;
@@ -256,7 +268,6 @@
         {
             header('Location: ' . $this->getRedirectUrl());
         }
-
 
 
         /**

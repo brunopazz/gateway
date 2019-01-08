@@ -36,9 +36,11 @@
                 "sale"         => [
                     "order"     => $transaction->getOrder(),
                     "payment"   => $transaction->getPayment(),
-                    "billing"   => $transaction->getBilling(),
+                    "billing"   => $transaction->getCustomer(),
                     "urlReturn" => $transaction->getUrlReturn(),
                     "fraud"     => $transaction->getFraud(),
+                    "fraudData" => $transaction->getFraudData(),
+
                 ]
             ];
 

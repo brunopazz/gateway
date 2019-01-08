@@ -68,6 +68,8 @@
          */
         private $softDescriptor;
 
+        private $card;
+
 
         /**
          * @return  \Azpay\API\Card
@@ -77,17 +79,31 @@
             return $this->tokenCard;
         }
 
-
         /**
-         * @param $tokenCard
-         * @return $this
-         * @throws Exception
+         * @param mixed $tokenCard
+         * @return Payment
          */
-        public function setTokenCard(Card $tokenCard)
+        public function setTokenCard($tokenCard)
         {
-
             $this->tokenCard = $tokenCard;
             return $this;
+        }
+
+        /**
+         * @return Card
+         */
+        public function Card()
+        {
+            $this->card = new Card();
+            return $this->card;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getCard()
+        {
+            return $this->card;
         }
 
 
@@ -96,7 +112,7 @@
          */
         public function jsonSerialize()
         {
-            $this->tokenCard = $this->getTokenCard()->getTokenCard();
+            unset($this->card);
             $vars = get_object_vars($this);
             $vars_clear = array_filter($vars, function ($value) {
                 return NULL !== $value;
@@ -239,9 +255,7 @@
             if ($numberOfPayments != 1 && $this->getMethod() == Methods::CREDIT_CARD_NO_INTEREST) {
                 throw new Exception('setNumberOfPayments must be 1 (one) when use Methods::CREDIT_CARD_NO_INTEREST');
             }
-            if ($numberOfPayments == 1 && $this->getMethod() != Methods::CREDIT_CARD_NO_INTEREST) {
-                throw new Exception('setNumberOfPayments must be great than 1 (one) when use Methods::CREDIT_CARD_INTEREST_BY_MERCHANT or CREDIT_CARD_INTEREST_BY_ISSUER');
-            }
+
             if ($numberOfPayments != 1 && $this->getMethod() == Methods::DEBIT_CARD) {
                 throw new Exception('setNumberOfPayments must be 1 (one) when use Methods::DEBIT_CARD');
             }

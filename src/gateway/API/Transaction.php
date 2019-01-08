@@ -10,6 +10,7 @@
 
     use Azpay\API\Credential as Credential;
     use Azpay\API\Customer as Customer;
+    use Azpay\API\Fraud as Fraud;
     use Azpay\API\Order as Order;
     use Azpay\API\Payment as Payment;
 
@@ -35,7 +36,7 @@
         /**
          * @var
          */
-        private $fraud;
+        private $fraud = "true";
         /**
          * @var
          */
@@ -54,6 +55,11 @@
          */
         private $credential;
 
+        /**
+         * @var
+         */
+        private $fraudData;
+
 
         /**
          * Transaction constructor.
@@ -61,7 +67,6 @@
         public function __construct()
         {
             $this->version = "1.0.0";
-            //$this->credential = $credential;
             return $this;
 
         }
@@ -158,20 +163,19 @@
         /**
          * @return  \Azpay\API\Customer
          */
-        public function getBilling()
+        public function getCustomer()
         {
             return $this->billing;
         }
 
 
         /**
-         * @param Customer $billing
-         * @return $this
+         * @return \Azpay\API\Customer
          */
-        public function Customer(Customer $billing)
+        public function Customer()
         {
-            $this->billing = $billing;
-            return $this;
+            $this->billing = new Customer();
+            return $this->billing;
         }
 
 
@@ -231,21 +235,41 @@
         }
 
         /**
-         * @return mixed
+         * @return string
          */
         public function getFraud()
         {
             return $this->fraud;
         }
 
+
         /**
-         * @param mixed $fraud
-         * @return Transaction
+         * @param $fraud
+         * @return $this
          */
         public function setFraud($fraud)
         {
             $this->fraud = $fraud;
             return $this;
+        }
+
+        /**
+         * @return Fraud
+         */
+        public function getFraudData()
+        {
+            return $this->fraudData;
+        }
+
+
+        /**
+         * @return \Azpay\API\Fraud
+         */
+        public function FraudData()
+        {
+            $this->fraud = "true";
+            $this->fraudData = new Fraud();
+            return $this->fraudData;
         }
 
 
