@@ -24,20 +24,20 @@
          */
         private $baseUrl = '';
 
-
         /**
          * Request constructor.
          *
          * @param Credential $credential
+         * @throws Exception
          */
         function __construct(Credential $credential)
         {
             if ($credential->getEnv() == "PRODUCTION") {
-                $this->baseUrl = 'http://0.0.0.0:8888';
-            } elseif ($credential->getEnv() == "DEV") {
-                $this->baseUrl = 'http://0.0.0.0:8888';
+                $this->baseUrl = Environment::getProductionUrl();
             } elseif ($credential->getEnv() == "SANDBOX") {
-                $this->baseUrl = 'http://0.0.0.0:8888';
+                $this->baseUrl = Environment::getSandboxUrl();
+            } else {
+                throw new Exception('Environment not set');
             }
         }
 
@@ -135,7 +135,6 @@
         {
             return $this->send($url_path, 'POST', $params);
         }
-
 
         /**
          * @param $url_path

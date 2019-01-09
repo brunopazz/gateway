@@ -16,7 +16,38 @@
      */
     abstract class Environment
     {
+        /**
+         *
+         */
         public const SANDBOX    = "SANDBOX";
+        /**
+         *
+         */
         public const PRODUCTION = "PRODUCTION";
-        public const DEVELOP    = "DEVELOP";
+
+        /**
+         *
+         */
+        private const SANDBOX_URL = "http://0.0.0.0:8888";
+        /**
+         *
+         */
+        private const PRODUCTION_URL = "http://0.0.0.0:8888";
+
+        /**
+         * @return string
+         */
+        public static function getSandboxUrl()
+        {
+            return self::SANDBOX_URL;
+        }
+
+        /**
+         * @return string
+         */
+        public static function getProductionUrl()
+        {
+            return self::PRODUCTION_URL;
+        }
+
     }
