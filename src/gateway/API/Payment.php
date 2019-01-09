@@ -68,11 +68,30 @@
          */
         private $softDescriptor;
 
+        /**
+         * @var
+         */
         private $card;
+        /**
+         * @var
+         */
         private $expire;
+        /**
+         * @var
+         */
         private $nrDocument;
+        /**
+         * @var
+         */
         private $instructions;
 
+        /**
+         * @param $value
+         */
+        public function unset($value)
+        {
+            unset($this->$value);
+        }
 
         /**
          * @return mixed

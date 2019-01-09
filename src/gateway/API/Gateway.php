@@ -7,8 +7,6 @@
      */
 
     namespace Azpay\API;
-
-
     /**
      * Class Gateway
      *
@@ -28,17 +26,14 @@
          * @var
          */
         private $verification;
-
         /**
          * @var Credential
          */
         private $credential;
-
         /**
          * @var
          */
         private $response;
-
 
         /**
          * Gateway constructor.
@@ -49,7 +44,6 @@
         {
             $this->credential = $credential;
         }
-
 
         /**
          * @param Transaction $transaction
@@ -118,7 +112,6 @@
             return $this;
         }
 
-
         /**
          * @param string $transactionId
          * @param null $amount
@@ -133,7 +126,6 @@
 
             return $this;
         }
-
 
         /**
          * @param string $transactionId
@@ -163,6 +155,29 @@
             return $this;
         }
 
+        /**
+         * @param Transaction $transaction
+         * @return $this
+         * @throws \Exception
+         */
+        public function OnlineTransfer(Transaction $transaction)
+        {
+            $sale = new OnlineTransfer($transaction, $this->credential);
+            $request = new Request($this->credential);
+            $this->response = $request->post("/v1/receiver", $sale->toJSON());
+
+            return $this;
+        }
+
+
+        public function Paypal(Transaction $transaction)
+        {
+            $sale = new Paypal($transaction, $this->credential);
+            $request = new Request($this->credential);
+            $this->response = $request->post("/v1/receiver", $sale->toJSON());
+
+            return $this;
+        }
 
         /**
          * @return mixed
@@ -180,7 +195,6 @@
             return json_encode($this->response, JSON_PRETTY_PRINT);
         }
 
-
         /**
          * @return string
          */
@@ -192,13 +206,11 @@
             return "UNKNOWN";
         }
 
-
         /**
          * @return string
          */
         public function getStatus()
         {
-
             switch ($this->response["status"]) {
                 case "0":
                     return "WAITING FOR PAYMENT";
@@ -229,7 +241,6 @@
                     return "PARTIAL CANCELLED";
             }
             return "UNKNOWN";
-
         }
 
         /**
@@ -237,13 +248,11 @@
          */
         public function isAuthorized()
         {
-
             if (isset($this->response["status"]) && $this->response["status"] == 10) {
                 if ($this->response["processor"]["payments"]["1"]["payment"]["status"] == 8) {
                     return true;
                 }
             }
-
             if (isset($this->response["status"]) && ($this->response["status"] == 3 || $this->response["status"] == 8)) {
                 return true;
             } else {
@@ -259,6 +268,10 @@
             if (isset($this->response["status"]) && isset($this->response["processor"]["urlAuthentication"]) && ($this->response["status"] == 0)) {
                 return true;
             } elseif (isset($this->response["processor"]["Boleto"]["details"]["urlBoleto"])) {
+                return true;
+            } elseif (isset($this->response["processor"]["Transfer"]["urlTransfer"])) {
+                return true;
+            } elseif (isset($this->response["processor"]["urlReturn"])) {
                 return true;
             } else {
                 return false;
@@ -277,8 +290,16 @@
             if (isset($this->response["processor"]["Boleto"]["details"]["urlBoleto"])) {
                 return $this->response["processor"]["Boleto"]["details"]["urlBoleto"];
             }
-            return "";
 
+            if (isset($this->response["processor"]["Transfer"]["urlTransfer"])) {
+                return $this->response["processor"]["Transfer"]["urlTransfer"];
+            }
+
+            if (isset($this->response["processor"]["urlReturn"])) {
+                return $this->response["processor"]["urlReturn"];
+            }
+
+            return "";
         }
 
         /**
@@ -288,7 +309,6 @@
         {
             header('Location: ' . $this->getRedirectUrl());
         }
-
 
         /**
          * @return bool
@@ -322,7 +342,6 @@
             return $this->version;
         }
 
-
         /**
          * @param $version
          * @return $this
@@ -350,6 +369,4 @@
             $this->verification = $verification;
             return $this;
         }
-
-
     }

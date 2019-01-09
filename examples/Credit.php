@@ -5,16 +5,11 @@
      * Date: 2018-12-26
      * Time: 22:50
      */
+
+    namespace Azpay\API;
+
     include_once "autoload.php";
 
-    use Azpay\API\Acquirers as Acquirers;
-    use Azpay\API\Brand as Brand;
-    use Azpay\API\Credential as Credential;
-    use Azpay\API\Currency as Currency;
-    use Azpay\API\Environment as Environment;
-    use Azpay\API\Gateway as Gateway;
-    use Azpay\API\Methods as Methods;
-    use Azpay\API\Transaction as Transaction;
 
     try {
         $credential = new Credential("1", "d41d8cd98f00b204e9800998ecf8427e", Environment::SANDBOX);
@@ -31,10 +26,10 @@
         // Set PAYMENT
         $transaction->Payment()
             ->setAcquirer(Acquirers::CIELO_V3)
-            ->setMethod(Methods::DEBIT_CARD)
+            ->setMethod(Methods::CREDIT_CARD_INTEREST_BY_ISSUER)
             ->setCurrency(Currency::BRAZIL_BRAZILIAN_REAL_BRL)
             ->setCountry("BRA")
-            ->setNumberOfPayments(1)
+            ->setNumberOfPayments(2)
             ->setSoftDescriptor("Bruno paz")
             ->Card()
             ->setBrand(Brand::VISA)
@@ -75,6 +70,7 @@
         $transaction->setUrlReturn("http://127.0.0.1:8989/return.php");
 
         // PROCESS - ACTION
+        #$response = $gateway->sale($transaction);
         $response = $gateway->authorize($transaction);
 
         // REDIRECT IF NECESSARY (Debit uses)
@@ -103,7 +99,6 @@
         // REPORT
         $response = $gateway->Report($response->getTransactionID());
         print "<br>REPORTING: " . $response->getStatus();
-
 
     } catch (Exception $e) {
         print_r($e->getMessage());

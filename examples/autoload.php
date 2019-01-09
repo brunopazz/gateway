@@ -23,3 +23,5 @@
     include_once("../src/gateway/API/Tokenization.php");
     include_once("../src/gateway/API/Rebill.php");
     include_once("../src/gateway/API/Boleto.php");
+    include_once("../src/gateway/API/OnlineTransfer.php");
+    include_once("../src/gateway/API/Paypal.php");

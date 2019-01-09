@@ -5,14 +5,11 @@
      * Date: 2018-12-26
      * Time: 22:50
      */
+
+    namespace Azpay\API;
+
     include_once "autoload.php";
 
-    use Azpay\API\Acquirers as Acquirers;
-    use Azpay\API\Credential as Credential;
-    use Azpay\API\Currency as Currency;
-    use Azpay\API\Environment as Environment;
-    use Azpay\API\Gateway as Gateway;
-    use Azpay\API\Transaction as Transaction;
 
     try {
         $credential = new Credential("1", "d41d8cd98f00b204e9800998ecf8427e", Environment::SANDBOX);
@@ -28,7 +25,7 @@
 
         // Set PAYMENT
         $transaction->Payment()
-            ->setAcquirer(Acquirers::ITAU_SHOPLINE)
+            ->setAcquirer(Acquirers::BRADESCO_SHOPFACIL)
             ->setCurrency(Currency::BRAZIL_BRAZILIAN_REAL_BRL)
             ->setCountry("BRA")
             ->setExpire("2019-01-12")
