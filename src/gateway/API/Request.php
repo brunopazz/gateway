@@ -99,7 +99,9 @@
             } catch (Exception $e) {
                 print "ERROR1";
             }
-
+            if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == 500) {
+                throw new Exception("Internal Server Error", CURLINFO_HTTP_CODE);
+            }
             if (curl_getinfo($curl, CURLINFO_HTTP_CODE) >= 400) {
                 throw new Exception(htmlentities(json_decode($response)->result->error->details), CURLINFO_HTTP_CODE);
             }

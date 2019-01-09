@@ -22,3 +22,4 @@
     include_once("../src/gateway/API/Items.php");
     include_once("../src/gateway/API/Tokenization.php");
     include_once("../src/gateway/API/Rebill.php");
+    include_once("../src/gateway/API/Boleto.php");

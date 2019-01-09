@@ -149,6 +149,20 @@
             return $this;
         }
 
+        /**
+         * @param Transaction $transaction
+         * @return $this
+         * @throws \Exception
+         */
+        public function Boleto(Transaction $transaction)
+        {
+            $sale = new Boleto($transaction, $this->credential);
+            $request = new Request($this->credential);
+            $this->response = $request->post("/v1/receiver", $sale->toJSON());
+
+            return $this;
+        }
+
 
         /**
          * @return mixed
@@ -244,6 +258,8 @@
         {
             if (isset($this->response["status"]) && isset($this->response["processor"]["urlAuthentication"]) && ($this->response["status"] == 0)) {
                 return true;
+            } elseif (isset($this->response["processor"]["Boleto"]["details"]["urlBoleto"])) {
+                return true;
             } else {
                 return false;
             }
@@ -256,6 +272,10 @@
         {
             if (isset($this->response["processor"]["urlAuthentication"])) {
                 return $this->response["processor"]["urlAuthentication"];
+            }
+
+            if (isset($this->response["processor"]["Boleto"]["details"]["urlBoleto"])) {
+                return $this->response["processor"]["Boleto"]["details"]["urlBoleto"];
             }
             return "";
 

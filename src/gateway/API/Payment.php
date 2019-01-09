@@ -69,7 +69,65 @@
         private $softDescriptor;
 
         private $card;
+        private $expire;
+        private $nrDocument;
+        private $instructions;
 
+
+        /**
+         * @return mixed
+         */
+        public function getExpire()
+        {
+            return $this->expire;
+        }
+
+        /**
+         * @param mixed $expire
+         * @return Payment
+         */
+        public function setExpire($expire)
+        {
+            unset($this->groupNumber);
+            $this->expire = $expire;
+            return $this;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getNrDocument()
+        {
+            return $this->nrDocument;
+        }
+
+        /**
+         * @param mixed $nrDocument
+         * @return Payment
+         */
+        public function setNrDocument($nrDocument)
+        {
+            $this->nrDocument = $nrDocument;
+            return $this;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getInstructions()
+        {
+            return $this->instructions;
+        }
+
+        /**
+         * @param mixed $instructions
+         * @return Payment
+         */
+        public function setInstructions($instructions)
+        {
+            $this->instructions = $instructions;
+            return $this;
+        }
 
         /**
          * @return  \Azpay\API\Card
@@ -97,6 +155,7 @@
             $this->card = new Card();
             return $this->card;
         }
+
 
         /**
          * @return mixed

@@ -8,12 +8,10 @@
     include_once "autoload.php";
 
     use Azpay\API\Acquirers as Acquirers;
-    use Azpay\API\Brand as Brand;
     use Azpay\API\Credential as Credential;
     use Azpay\API\Currency as Currency;
     use Azpay\API\Environment as Environment;
     use Azpay\API\Gateway as Gateway;
-    use Azpay\API\Methods as Methods;
     use Azpay\API\Transaction as Transaction;
 
     try {
@@ -30,57 +28,36 @@
 
         // Set PAYMENT
         $transaction->Payment()
-            ->setAcquirer(Acquirers::CIELO_V3)
-            ->setMethod(Methods::CREDIT_CARD_INTEREST_BY_ISSUER)
+            ->setAcquirer(Acquirers::ITAU_SHOPLINE)
             ->setCurrency(Currency::BRAZIL_BRAZILIAN_REAL_BRL)
             ->setCountry("BRA")
-            ->setNumberOfPayments(2)
-            ->setSoftDescriptor("Bruno paz")
-            ->Card()
-            ->setBrand(Brand::VISA)
-            ->setCardHolder("Bruno paz")
-            ->setCardNumber("2223000148400010")
-            ->setCardSecurityCode("123")
-            ->setCardExpirationDate("202001");
+            ->setExpire("2019-01-12")
+            ->setNrDocument(rand(1, 1000000))
+            ->setInstructions("Não receber após vencimento");
 
         // SET CUSTOMER
         $transaction->Customer()
             ->setCustomerIdentity("999999999")
             ->setName("Bruno")
-            ->setCpf("30212212212")
-            ->setEmail("brunopaz@test.com");
-
-        // SET FRAUD DATA OBJECT
-        $transaction->FraudData()
-            ->setName("Bruno Paz")
-            ->setDocument("30683882828")
-            ->setEmail("brunopaz@g.com")
-            ->setAddress("Rua test")
+            ->setAddress("Rua teste de varginha")
             ->setAddress2("Apartamento 23")
-            ->setAddressNumber("300")
             ->setPostalCode("08742350")
             ->setCity("São Paulo")
             ->setState("SP")
             ->setCountry("BRASIL")
-            ->setPhonePrefix("11")
-            ->setPhoneNumber("99999-9999")
-            ->setDevice("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36")
-            ->setCostumerIP("192.168.0.1")
-            ->setItems([
-                ["productName" => "Iphone X", "quantity" => 1, "price" => "20.00"],
-                ["productName" => "Iphone XL", "quantity" => 12, "price" => "1220.00"]
-            ]);
+            ->setCpf("60258170140")
+            ->setEmail("brunopaz@test.com");
 
         // Set URL RETURN
         $transaction->setUrlReturn("http://127.0.0.1:8989/return.php");
 
         // PROCESS - ACTION
-        #$response = $gateway->sale($transaction);
-        $response = $gateway->authorize($transaction);
+        $response = $gateway->Boleto($transaction);
 
         // REDIRECT IF NECESSARY (Debit uses)
         if ($response->isRedirect()) {
-            $response->redirect();
+            print $response->getRedirectUrl();
+            //$response->redirect();
         }
 
         // RESULTED
@@ -88,17 +65,6 @@
             print "<br>RESULTED: " . $response->getStatus();
         } else { // Action Unauthorized
             print "<br>RESULTED:" . $response->getStatus();
-        }
-
-        // CAPTURE
-        if ($response->canCapture()) {
-            $response = $gateway->Capture($response->getTransactionID());
-            print "<br>CAPTURED: " . $response->getStatus();
-        }
-        // CANCELL
-        if ($response->canCancel()) {
-            $response = $gateway->Cancel($response->getTransactionID());
-            print "<br>CANCELED: " . $response->getStatus();
         }
 
         // REPORT
