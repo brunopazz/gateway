@@ -7,6 +7,8 @@
      */
     namespace Azpay\API;
 
+    use Exception as Exception;
+
     include_once "autoload.php";
 
     try {
@@ -85,8 +87,6 @@
         left: 50%;
         top: 50%;
         z-index: 1;
-        width: 150px;
-        height: 150px;
         margin: -75px 0 0 -75px;
         border: 16px solid #f3f3f3;
         border-radius: 60% !important;
@@ -168,9 +168,14 @@
 <script src="https://www.paypalobjects.com/webstatic/ppplusdcc/ppplusdcc.min.js?ver=3.1.2"></script>
 <script>
 
-    var ppp = PAYPAL.apps.PPP({
+    var ppp;
+    var PAYPAL;
+    ppp = PAYPAL.apps.PPP({
 
-        approvalUrl: "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=<?php echo $response["processor"]["details"]["token"]?>",
+        approvalUrl: "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=<?php echo $response["
+        processor"]["
+        details"]["
+        token"]?>",
         buttonLocation: "outside",
         preselection: "none",
         surcharging: true,
@@ -181,7 +186,13 @@
 
         onContinue: function (rememberedCards, payerId, token, term) {
             console.log(term);
-            self.frames[0].location.href = "<?php echo $response["processor"]["details"]["urlExecute"];?>";
+            self.frames[0].location.href = "<?php echo $response["
+            processor
+            "]["
+            details
+            "]["
+            urlExecute
+            "];?>";
             console.log(JSON.stringify('Success'));
         },
         onError: function (err) {

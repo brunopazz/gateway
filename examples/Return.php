@@ -8,6 +8,8 @@
 
     namespace Azpay\API;
 
+    use Exception as Exception;
+
     include_once "autoload.php";
 
 
