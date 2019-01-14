@@ -1,4 +1,4 @@
-# Gateway de Pagamento
+# Gateway de Pagamento - SDK PHP
 
 Modalidades de pagamentos:
 - Cartão de crédito
@@ -216,7 +216,7 @@ $response = $gateway->Capture("{TransactionID}");
 $response = $gateway->sale("{TransactionID}");
 ```
 
-### Tranferência Bancária (Tranfer)
+### Tranferência Bancária (Transfer)
 ```php
 $response = $gateway->OnlineTransfer($transaction);
 ```
@@ -286,6 +286,13 @@ $response = $gateway->Rebill($transaction);
 |Parcelamento loja (Crédito)|Methods::CREDIT_CARD_INTEREST_BY_MERCHANT|
 |Parcelamento Emissor (Crédito)|Methods::CREDIT_CARD_INTEREST_BY_ISSUER|  
 |Cartão de débito|Methods::DEBIT_CARD|
+
+
+## Outros exemplos
+|Exemplos|URL|
+|---|---|
+|Boleto Bancário|[source](examples/Boleto.php)|
+|Boleto Bancário||
 
 
                 
