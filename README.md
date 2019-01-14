@@ -119,6 +119,7 @@ Recursos disponíveis
     }
 
 ```
+---
 
 ## Credencias de acesso
 
@@ -287,12 +288,16 @@ $response = $gateway->Rebill($transaction);
 |Parcelamento Emissor (Crédito)|Methods::CREDIT_CARD_INTEREST_BY_ISSUER|  
 |Cartão de débito|Methods::DEBIT_CARD|
 
-
-## Outros exemplos
-|Exemplos|URL|
+---
+## Outros exemplos de modalidades de pagamentos
+|Modalidades de pagamentos|Código-fonte|
 |---|---|
-|Boleto Bancário|[source](examples/Boleto.php)|
-|Boleto Bancário||
+|Boleto Bancário|[source / example](examples/Boleto.php)|
+|Cartão de Crédito|[source / example](examples/Credit.php)|
+|Cartão de Débito|[source / example](examples/Debit.php)|
+|Paypal|[source / example](examples/Paypal.php)|
+|Recorrência|[source / example](examples/Rebill.php)|
+|Transfência eletrônica|[source / example](examples/OnlineTransfer.php)|
 
 
                 
