@@ -46,11 +46,11 @@ Recursos disponíveis
             ->setNumberOfPayments(2)
             ->setSoftDescriptor("Bruno paz")
             ->Card()
-            ->setBrand(Brand::VISA)
-            ->setCardHolder("Bruno paz")
-            ->setCardNumber("2223000148400010")
-            ->setCardSecurityCode("123")
-            ->setCardExpirationDate("202001");
+                ->setBrand(Brand::VISA)
+                ->setCardHolder("Bruno paz")
+                ->setCardNumber("2223000148400010")
+                ->setCardSecurityCode("123")
+                ->setCardExpirationDate("202001");
 
         // SET CUSTOMER
         $transaction->Customer()
