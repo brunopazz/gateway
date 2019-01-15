@@ -6,7 +6,7 @@
      * Time: 22:50
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
     include_once "autoload.php";
 

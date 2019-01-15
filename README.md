@@ -19,7 +19,7 @@ Recursos disponíveis
 
 ## Cartão de crédito (Exemplo) 
 ```php
- namespace Azpay\API;
+ namespace Gateway\API;
 
     include_once "autoload.php";
 
@@ -129,7 +129,6 @@ $credential = new Credential("{MERCHANTID}", "{MERCHANTKEY}", Environment::SANDB
 ## Autenticação
 
 ```php
-### Authentication
 $gateway = new Gateway($credential);
 ```
 
@@ -143,7 +142,6 @@ $gateway = new Gateway($credential);
 ### Criando um nova transação de pagamento
 
 ```php
-### CREATE A NEW TRANSACTION
 $transaction = new Transaction();
 ```
 
@@ -222,7 +220,7 @@ $response = $gateway->sale("{TransactionID}");
 $response = $gateway->OnlineTransfer($transaction);
 ```
 
-### Boleto Bancário (Slip Payment)
+### Boleto Bancário (Payment Bank Slip)
 ```php
 $response = $gateway->Boleto($transaction);
 ```

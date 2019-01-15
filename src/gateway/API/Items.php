@@ -6,13 +6,13 @@
      * Time: 22:14
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
 
     /**
      * Class Items
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Items implements \JsonSerializable
     {

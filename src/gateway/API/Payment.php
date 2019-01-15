@@ -6,14 +6,14 @@
      * Time: 21:55
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
     use Exception;
 
     /**
      * Class Payments
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Payment implements \JsonSerializable
     {
@@ -149,7 +149,7 @@
         }
 
         /**
-         * @return  \Azpay\API\Card
+         * @return  \Gateway\API\Card
          */
         public function getTokenCard()
         {

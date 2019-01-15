@@ -6,7 +6,7 @@
      * Time: 01:27
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
 
     abstract class Currency

@@ -6,11 +6,11 @@
      * Time: 22:38
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
     /**
      * Class Gateway
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Gateway
     {

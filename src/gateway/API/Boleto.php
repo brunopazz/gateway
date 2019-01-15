@@ -6,13 +6,13 @@
      * Time: 21:55
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
 
     /**
      * Class Boleto
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Boleto implements \JsonSerializable
     {

@@ -6,13 +6,13 @@
      * Time: 01:27
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
 
     /**
      * Class Methods
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     abstract class Methods
     {

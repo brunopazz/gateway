@@ -6,18 +6,18 @@
      * Time: 22:23
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
-    use Azpay\API\Credential as Credential;
-    use Azpay\API\Customer as Customer;
-    use Azpay\API\Fraud as Fraud;
-    use Azpay\API\Order as Order;
-    use Azpay\API\Payment as Payment;
+    use Gateway\API\Credential as Credential;
+    use Gateway\API\Customer as Customer;
+    use Gateway\API\Fraud as Fraud;
+    use Gateway\API\Order as Order;
+    use Gateway\API\Payment as Payment;
 
     /**
      * Class Transaction
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Transaction implements \JsonSerializable
     {
@@ -26,7 +26,7 @@
          */
         private $version;
         /**
-         * @var \Azpay\API\Credential
+         * @var \Gateway\API\Credential
          */
         private $verification;
         /**
@@ -83,18 +83,18 @@
         }
 
         /**
-         * @return \Azpay\API\Credential
+         * @return \Gateway\API\Credential
          */
-        public function getCredential(): \Azpay\API\Credential
+        public function getCredential(): \Gateway\API\Credential
         {
             return $this->credential;
         }
 
         /**
-         * @param \Azpay\API\Credential $credential
+         * @param \Gateway\API\Credential $credential
          * @return Transaction
          */
-        public function setCredential(\Azpay\API\Credential $credential): Transaction
+        public function setCredential(\Gateway\API\Credential $credential): Transaction
         {
             $this->credential = $credential;
             return $this;
@@ -123,7 +123,7 @@
         }
 
         /**
-         * @return \Azpay\API\Order
+         * @return \Gateway\API\Order
          */
         public function getOrder()
         {
@@ -132,7 +132,7 @@
 
 
         /**
-         * @return \Azpay\API\Order
+         * @return \Gateway\API\Order
          */
         public function Order()
         {
@@ -141,7 +141,7 @@
         }
 
         /**
-         * @return \Azpay\API\Payment
+         * @return \Gateway\API\Payment
          */
         public function getPayment()
         {
@@ -150,7 +150,7 @@
 
 
         /**
-         * @return \Azpay\API\Payment
+         * @return \Gateway\API\Payment
          * @throws \Exception
          */
         public function Payment()
@@ -161,7 +161,7 @@
         }
 
         /**
-         * @return  \Azpay\API\Customer
+         * @return  \Gateway\API\Customer
          */
         public function getCustomer()
         {
@@ -170,7 +170,7 @@
 
 
         /**
-         * @return \Azpay\API\Customer
+         * @return \Gateway\API\Customer
          */
         public function Customer()
         {
@@ -263,7 +263,7 @@
 
 
         /**
-         * @return \Azpay\API\Fraud
+         * @return \Gateway\API\Fraud
          */
         public function FraudData()
         {

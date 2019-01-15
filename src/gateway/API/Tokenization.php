@@ -6,13 +6,13 @@
      * Time: 19:29
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
 
     /**
      * Class Tokenization
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Tokenization implements \JsonSerializable
     {

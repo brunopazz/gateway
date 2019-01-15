@@ -6,7 +6,7 @@
      * Time: 16:51
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
     use Exception;
 
@@ -14,7 +14,7 @@
     /**
      * Class Card
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Card implements \JsonSerializable
     {

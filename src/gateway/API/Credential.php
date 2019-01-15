@@ -6,14 +6,14 @@
      * Time: 22:20
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
     use Exception;
 
     /**
      * Class Verification
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Credential implements \JsonSerializable
     {

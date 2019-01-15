@@ -6,7 +6,7 @@
      * Time: 01:07
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
 
     abstract class Acquirers

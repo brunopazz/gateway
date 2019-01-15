@@ -6,7 +6,7 @@
      * Time: 22:50
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
     include_once "autoload.php";
 
@@ -26,7 +26,7 @@
 
         // Set PAYMENT
         $transaction->Payment()
-            ->setAcquirer(Acquirers::CIELO_V3)
+            ->setAcquirer(Acquirers::GLOBAL_PAYMENT)
             ->setMethod(Methods::DEBIT_CARD)
             ->setCurrency(Currency::BRAZIL_BRAZILIAN_REAL_BRL)
             ->setCountry("BRA")
@@ -35,7 +35,7 @@
             ->Card()
             ->setBrand(Brand::VISA)
             ->setCardHolder("Bruno paz")
-            ->setCardNumber("2223000148400010")
+            ->setCardNumber("4548810000000003")
             ->setCardSecurityCode("123")
             ->setCardExpirationDate("202001");
 

@@ -6,14 +6,14 @@
      * Time: 05:52
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
     use Exception;
 
     /**
      * Class Request
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Request
     {

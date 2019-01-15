@@ -6,13 +6,13 @@
      * Time: 21:55
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
 
     /**
      * Class Cancel
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Cancel implements \JsonSerializable
     {

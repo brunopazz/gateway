@@ -6,13 +6,13 @@
      * Time: 22:11
      */
 
-    namespace Azpay\API;
+    namespace Gateway\API;
 
 
     /**
      * Class Fraud
      *
-     * @package Azpay\API
+     * @package Gateway\API
      */
     class Fraud implements \JsonSerializable
     {
