@@ -8,6 +8,14 @@
       "email": "brunopaz@gmail.com"
     }
   ],
+  "license": "MIT",
   "minimum-stability": "dev",
-  "require": {}
+  "autoload": {
+    "psr-4": {
+      "BrunoPaz\\Gateway\\": "src/Gateway/API"
+    }
+  },
+  "require": {
+    "php": ">=5.3.0"
+  }
 }
