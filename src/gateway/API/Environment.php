@@ -28,11 +28,11 @@
         /**
          *
          */
-        private const SANDBOX_URL = "http://0.0.0.0:8888";
+        private const SANDBOX_URL = "https://evaluation-api.azpay.com.br";
         /**
          *
          */
-        private const PRODUCTION_URL = "http://0.0.0.0:8888";
+        private const PRODUCTION_URL = "https://api.azpay.com.br";
 
         /**
          * @return string
