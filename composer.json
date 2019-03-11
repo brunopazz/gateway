@@ -12,7 +12,7 @@
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
-      "BrunoPaz\\Gateway\\API\\": "src/gateway/API"
+      "Gateway\\API\\": "src/gateway/API"
     }
   },
   "require": {
