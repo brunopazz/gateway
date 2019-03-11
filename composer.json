@@ -1,0 +1,13 @@
+{
+  "name": "brunopaz/php-sdk-gateway",
+  "description": "SDK PHP for Gateway",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Bruno Paz",
+      "email": "brunopaz@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {}
+}
