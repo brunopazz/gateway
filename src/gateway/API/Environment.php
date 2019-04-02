@@ -28,11 +28,11 @@
         /**
          *
          */
-        private const SANDBOX_URL = "https://evaluation-api.azpay.com.br";
+        private const SANDBOX_URL = "https://sandbox-api.gateway.tradeupgroup.com";
         /**
          *
          */
-        private const PRODUCTION_URL = "https://api.azpay.com.br";
+        private const PRODUCTION_URL = "https://api.gateway.tradeupgroup.com";
 
         /**
          * @return string
