@@ -14,8 +14,9 @@
 
 
     try {
-        $credential = new Credential("1", "d41d8cd98f00b204e9800998ecf8427e", Environment::SANDBOX);
-        $gateway = new Gateway($credential);
+        $credential = new Credential("{{mechantID}}", "{{mechantKEY}}",
+            Environment::SANDBOX);
+        $gateway    = new Gateway($credential);
 
         ### CREATE A NEW TRANSACTION
         $transaction = new Transaction();
@@ -23,7 +24,7 @@
         // Set ORDER
         $transaction->Order()
             ->setReference("ss")
-            ->setTotalAmount(1000);
+            ->setTotalAmount(150000);
 
         // Set PAYMENT
         $transaction->Payment()
@@ -72,7 +73,7 @@
         $transaction->setUrlReturn("http://127.0.0.1:8989/return.php");
 
         // PROCESS - ACTION
-        #$response = $gateway->sale($transaction);
+        //$response = $gateway->sale($transaction);
         $response = $gateway->authorize($transaction);
 
         // REDIRECT IF NECESSARY (Debit uses)
@@ -89,12 +90,15 @@
 
         // CAPTURE
         if ($response->canCapture()) {
-            $response = $gateway->Capture($response->getTransactionID());
+            $response = $gateway->Capture($response->getTransactionID(),
+                100000);
             print "<br>CAPTURED: " . $response->getStatus();
         }
+
+
         // CANCELL
         if ($response->canCancel()) {
-            $response = $gateway->Cancel($response->getTransactionID());
+            $response = $gateway->Cancel($response->getTransactionID(), 50000);
             print "<br>CANCELED: " . $response->getStatus();
         }
 

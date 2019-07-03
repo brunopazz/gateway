@@ -13,8 +13,9 @@
     include_once "autoload.php";
 
     try {
-        $credential = new Credential("1", "d41d8cd98f00b204e9800998ecf8427e", Environment::SANDBOX);
-        $gateway = new Gateway($credential);
+        $credential = new Credential("{{mechantID}}", "{{mechantKEY}}",
+            Environment::SANDBOX);
+        $gateway    = new Gateway($credential);
 
         ### CREATE A NEW TRANSACTION
         $transaction = new Transaction();
@@ -96,13 +97,13 @@
         }
         // CANCELL
         if ($response->canCancel()) {
-            $response = $gateway->Cancel($response->getTransactionID());
+            $response = $gateway->Cancel($response->getTransactionID(), "900");
             print "<br>CANCELED: " . $response->getStatus();
         }
 
         // REPORT
         $response = $gateway->Report($response->getTransactionID());
-        print "<br>REPORTING: " . $response->getStatus();
+        print "<br>REPORTING: ".$response->getResponseJson();
 
 
     } catch (Exception $e) {
