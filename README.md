@@ -256,7 +256,10 @@ $response = $gateway->Rebill($transaction);
 |GETNET V1.0 (recente)|Acquirers::GETNET_V1|                   
 |GLOBAL PAYMENT|Acquirers::GLOBAL_PAYMENT|              
 |FIRST DATA BIN|Acquirers::FIRSTDATA|                   
-|ADIQ|Acquirers::ADIQ|                    
+|ADIQ|Acquirers::ADIQ|
+|WORLDPAY|Acquirers::WORLDPAY|      
+|GRANITO|Acquirers::GRANITO|      
+|SIXBANK|Acquirers::SIXBANK|                          
 
 ### Códigos das bandeiras de cartões
 |Nome|Constante|

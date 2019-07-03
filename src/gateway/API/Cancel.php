@@ -42,6 +42,7 @@
         {
             $this->transactionId = $transactionId;
             $this->amount = $amount;
+
             $this->setJsonRequest($credential);
         }
 

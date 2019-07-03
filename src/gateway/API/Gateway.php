@@ -61,7 +61,6 @@
 
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $authorize->toJSON());
-
             return $this;
         }
 
@@ -99,11 +98,12 @@
 
         /**
          * @param string $transactionId
-         * @param null $amount
+         * @param int null $amount
+         *
          * @return $this
          * @throws \Exception
          */
-        public function Capture(string $transactionId, $amount = NULL)
+        public function Capture(string $transactionId, int $amount = NULL)
         {
             $sale = new Capture($this->credential, $transactionId, $amount);
             $request = new Request($this->credential);
@@ -114,12 +114,14 @@
 
         /**
          * @param string $transactionId
-         * @param null $amount
+         * @param int null $amount
+         *
          * @return $this
          * @throws \Exception
          */
-        public function Cancel(string $transactionId, $amount = NULL)
+        public function Cancel(string $transactionId, int $amount = NULL)
         {
+
             $sale = new Cancel($this->credential, $transactionId, $amount);
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
