@@ -26,7 +26,7 @@ Recursos disponíveis
     use Exception as Exception;
 
     try {
-        $credential = new Credential("1", "d41d8cd12300b204e9800998ecf8427e", Environment::SANDBOX);
+        $credential = new Credential("{{INSERT_KEY}}", "{{INSERT_TOKEN}}", Environment::SANDBOX);
         $gateway = new Gateway($credential);
 
         ### CREATE A NEW TRANSACTION
