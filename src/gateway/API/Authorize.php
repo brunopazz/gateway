@@ -73,7 +73,8 @@
          */
         public function toJSON()
         {
-            return json_encode($this->jsonRequest, JSON_PRETTY_PRINT);
+            return json_encode($this->removeEmptyValues($this->jsonRequest),
+                JSON_PRETTY_PRINT);
         }
 
         /**
@@ -82,6 +83,20 @@
         public function jsonSerialize()
         {
             return get_object_vars($this);
+        }
+
+        protected function removeEmptyValues(array &$array)
+        {
+            foreach ($array as $key => &$value) {
+                if (is_array($value)) {
+                    $value = $this->removeEmptyValues($value);
+                }
+                if (empty($value)) {
+                    unset($array[$key]);
+                }
+            }
+
+            return $array;
         }
 
 

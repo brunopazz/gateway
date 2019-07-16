@@ -52,7 +52,8 @@
          */
         public function toJSON()
         {
-            return json_encode($this->jsonRequest, JSON_PRETTY_PRINT);
+            return json_encode($this->removeEmptyValues($this->jsonRequest),
+                JSON_PRETTY_PRINT);
         }
 
 
