@@ -180,7 +180,7 @@
                 throw new Exception('setCardSecurityCode must be a string!');
             }
 
-            if (strlen($cardSecurityCode) >= 4) {
+            if (strlen($cardSecurityCode) > 4) {
                 throw new Exception('setCardSecurityCode must be less than 4 characters');
             }
 
