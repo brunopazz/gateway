@@ -22,6 +22,7 @@ abstract class Acquirers
     public const PAGSEGURO_CHECKOUT_EXPRESSO = 9;
     public const BRADESCO                    = 10;
     public const BRADESCO_SHOPFACIL          = 19;
+    public const BRADESCO_SHOPFACIL_BOLETO   = 18;
     public const ITAU_SHOPLINE               = 20;
     public const STONE                       = 20;
     public const GETNET                      = 22;
