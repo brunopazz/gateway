@@ -74,7 +74,12 @@
          */
         public function jsonSerialize()
         {
-            return get_object_vars($this);
+            $vars       = get_object_vars($this);
+            $vars_clear = array_filter($vars, function ($value) {
+                return null !== $value;
+            });
+
+            return $vars_clear;
         }
 
         /**
