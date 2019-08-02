@@ -26,6 +26,10 @@
          * @var
          */
         private $cpf;
+        /**
+         * @var
+         */
+        private $cnpj;
 
         /**
          * @var
@@ -349,6 +353,8 @@
         public function setCpf($cpf)
         {
 
+            $cpf = preg_replace("/[^\d]/", "", $cpf);
+
             if (!is_numeric($cpf)) {
                 throw new Exception('setCpf must be a numeric!');
             }
@@ -359,6 +365,35 @@
             $this->cpf = $cpf;
             return $this;
         }
+
+        /**
+         * @return mixed
+         */
+        public function getCnpj()
+        {
+            return $this->cnpj;
+        }
+
+
+        /**
+         * @param $cnpj
+         *
+         * @return $this
+         * @throws Exception
+         */
+        public function setCnpj($cnpj)
+        {
+
+            $cnpj = preg_replace("/[^\d]/", "", $cnpj);
+
+            if ( ! is_numeric($cnpj)) {
+                throw new Exception('setCNPJ must be a numeric!');
+            }
+            $this->cnpj = $cnpj;
+
+            return $this;
+        }
+
 
 
     }
