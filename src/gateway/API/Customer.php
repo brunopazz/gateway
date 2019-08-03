@@ -367,6 +367,9 @@
                 throw new Exception('setCpf must be 11 characters');
             }
 
+            if (empty($cpf)) {
+                $cpf = null;
+            }
             $this->cpf = $cpf;
             return $this;
         }
@@ -388,12 +391,12 @@
          */
         public function setCnpj($cnpj)
         {
-
             $cnpj = preg_replace("/[^\d]/", "", $cnpj);
-
             if ( ! is_numeric($cnpj)) {
                 throw new Exception('setCNPJ must be a numeric!');
             }
+            if (empty($cnpj))
+                $cnpj = null;
             $this->cnpj = $cnpj;
 
             return $this;
