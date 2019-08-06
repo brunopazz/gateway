@@ -125,8 +125,8 @@
             if (!is_string($name)) {
                 throw new Exception('setName must be a string!');
             }
-            if (strlen($name) >= 255) {
-                throw new Exception('setName must be less than 255 characters');
+            if (strlen($name) >= 70) {
+                throw new Exception('setName must be less than 70 characters');
             }
             $this->name = $name;
             return $this;
@@ -151,8 +151,8 @@
             if (!is_string($address)) {
                 throw new Exception('setAddress must be a string!');
             }
-            if (strlen($address) >= 255) {
-                throw new Exception('setAddress must be less than 255 characters');
+            if (strlen($address) >= 150) {
+                throw new Exception('setAddress must be less than 150 characters');
             }
             $this->address = $address;
             return $this;
@@ -177,8 +177,8 @@
             if (!is_string($address2)) {
                 throw new Exception('setAddress2 must be a string!');
             }
-            if (strlen($address2) >= 255) {
-                throw new Exception('setAddress2 must be less than 255 characters');
+            if (strlen($address2) >= 150) {
+                throw new Exception('setAddress2 must be less than 150 characters');
             }
             $this->address2 = $address2;
             return $this;
@@ -203,8 +203,8 @@
             if (!is_string($city)) {
                 throw new Exception('setCity must be a string!');
             }
-            if (strlen($city) >= 255) {
-                throw new Exception('setCity must be less than 255 characters');
+            if (strlen($city) >= 50) {
+                throw new Exception('setCity must be less than 50 characters');
             }
             $this->city = $city;
             return $this;
@@ -229,8 +229,8 @@
             if (!is_string($state)) {
                 throw new Exception('setState must be a string!');
             }
-            if (strlen($state) >= 255) {
-                throw new Exception('setState must be less than 255 characters');
+            if (strlen($state) >= 50) {
+                throw new Exception('setState must be less than 50 characters');
             }
             $this->state = $state;
             return $this;
@@ -255,8 +255,8 @@
             if (!is_string($postalCode)) {
                 throw new Exception('setPostalCode must be a string!');
             }
-            if (strlen($postalCode) >= 255) {
-                throw new Exception('setPostalCode must be less than 255 characters');
+            if (strlen($postalCode) >= 15) {
+                throw new Exception('setPostalCode must be less than 15 characters');
             }
             $this->postalCode = $postalCode;
             return $this;
@@ -281,8 +281,8 @@
             if (!is_string($country)) {
                 throw new Exception('setCountry must be a string!');
             }
-            if (strlen($country) >= 255) {
-                throw new Exception('setCountry must be less than 255 characters');
+            if (strlen($country) >= 40) {
+                throw new Exception('setCountry must be less than 40 characters');
             }
 
             $this->country = $country;
@@ -334,8 +334,8 @@
             if (!is_string($email)) {
                 throw new Exception('setEmail must be a string!');
             }
-            if (strlen($email) >= 200) {
-                throw new Exception('setEmail must be less than 200 characters');
+            if (strlen($email) >= 150) {
+                throw new Exception('setEmail must be less than 150 characters');
             }
             $this->email = $email;
             return $this;
