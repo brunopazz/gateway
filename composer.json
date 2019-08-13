@@ -6,13 +6,9 @@
     {
       "name": "Bruno Paz",
       "email": "brunopaz@gmail.com"
-    },
-    {
-      "name": "SixBank",
-      "email": "bruno.paz@tradeupgroup.com"
     }
   ],
-  "license": "MIT",
+  "license": "GNU GPL",
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
