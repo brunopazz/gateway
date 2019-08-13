@@ -1,6 +1,6 @@
 {
   "name": "brunopaz/php-sdk-gateway",
-  "description": "SDK PHP for Payment Gateway",
+  "description": "SDK PHP for Gateway",
   "type": "library",
   "authors": [
     {
@@ -8,7 +8,7 @@
       "email": "brunopaz@gmail.com"
     }
   ],
-  "license": "GNU GPL",
+  "license": "MIT",
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
@@ -20,3 +20,4 @@
     "ext-json": "*"
   }
 }
+
