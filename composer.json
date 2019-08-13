@@ -1,6 +1,6 @@
 {
   "name": "brunopaz/php-sdk-gateway",
-  "description": "SDK PHP for Gateway",
+  "description": "SDK PHP for Payment Gateway",
   "type": "library",
   "authors": [
     {
