@@ -111,7 +111,10 @@
             }
             curl_close($curl);
 
-            return json_decode($response, true);
+           if(json_decode($response, true))
+                return json_decode($response, true);
+            else
+                throw new Exception($response, CURLINFO_HTTP_CODE);
         }
 
         /**
